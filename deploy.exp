@@ -1,0 +1,23 @@
+set timeout -1
+spawn ssh -tt -o StrictHostKeyChecking=no farukguven@192.168.50.100
+
+expect {
+    -nocase "password:" {
+        send -- "\\\\-_-As25Um95Fa94-_-//\r"
+        expect -re {.*(\$|#|>) ?}
+    }
+    -re {.*(\$|#|>) ?} {
+        # Already logged in via SSH key
+    }
+}
+
+send "cp /volume1/homes/farukguven/DFG/Projeler/Farukguvencom/farukguven/deploy-site.sh /tmp/deploy-site.sh && chmod +x /tmp/deploy-site.sh\r"
+expect -re {.*(\$|#|>) ?}
+
+send "sudo bash /tmp/deploy-site.sh > /tmp/deploy.log 2>&1\r"
+expect -nocase "password:"
+send -- "\\\\-_-As25Um95Fa94-_-//\r"
+expect -re {.*(\$|#|>) ?}
+
+send "exit\r"
+expect eof

@@ -1,0 +1,12 @@
+set timeout -1
+spawn ssh -tt -o StrictHostKeyChecking=no farukguven@192.168.50.100
+expect -nocase "password:"
+send "\\-_-As25Um95Fa94-_-//\r"
+expect "farukguven@DFGNAS"
+sleep 1
+send "sudo bash /volume1/homes/farukguven/DFG/Projeler/Farukguvencom/farukguven/deploy-site.sh\r"
+expect -nocase "password:"
+send "\\-_-As25Um95Fa94-_-//\r"
+expect "farukguven@DFGNAS"
+send "exit\r"
+expect eof
