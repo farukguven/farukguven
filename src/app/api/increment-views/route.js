@@ -5,6 +5,7 @@ import { isDevelopment } from '@/lib/utils'
 
 export async function POST(request) {
   if (isDevelopment) return NextResponse.json({ error: 'Not available in development' }, { status: 400 })
+  if (!supabase) return NextResponse.json({ error: 'Supabase not configured' }, { status: 503 })
 
   const searchParams = request.nextUrl.searchParams
   const slug = searchParams.get('slug')
