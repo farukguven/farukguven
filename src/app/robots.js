@@ -4,7 +4,7 @@ export default function robots() {
       userAgent: '*',
       allow: '/'
     },
-    sitemap: 'https://onur.dev/sitemap.xml',
-    host: 'https://onur.dev'
+    sitemap: 'https://farukguven.com/sitemap.xml',
+    host: 'https://farukguven.com'
   }
 }

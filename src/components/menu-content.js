@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
 import { NavigationLink } from '@/components/navigation-link'
-import { LINKS } from '@/lib/constants'
+import { LINKS, GIRISIMLER } from '@/lib/constants'
 
 export const MenuContent = () => (
   <div className="flex w-full flex-col text-sm">
@@ -29,13 +29,33 @@ export const MenuContent = () => (
             href={link.href}
             label={link.label}
             icon={link.icon}
+            disabled={link.disabled}
             shortcutNumber={linkIndex + 1}
           />
         ))}
       </div>
 
+      {/* Girişimlerim Section */}
+      {GIRISIMLER.length > 0 && (
+        <div className="mt-2 border-t pt-4">
+          <h3 className="mb-3 px-2 text-xs font-semibold uppercase tracking-wider text-gray-500">
+            Girişimlerim
+          </h3>
+          <div className="flex flex-col gap-1">
+            {GIRISIMLER.map((link) => (
+              <NavigationLink
+                key={link.href}
+                href={link.href}
+                label={link.label}
+                icon={link.icon}
+              />
+            ))}
+          </div>
+        </div>
+      )}
+
       {/* Contact Section */}
-      <div className="mt-6 border-t pt-4">
+      <div className="mt-2 border-t pt-4">
         <h3 className="mb-3 px-2 text-xs font-semibold uppercase tracking-wider text-gray-500">
           İletişim
         </h3>

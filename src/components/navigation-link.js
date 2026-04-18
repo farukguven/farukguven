@@ -7,9 +7,28 @@ import { memo, useMemo } from 'react'
 
 import { cn } from '@/lib/utils'
 
-export const NavigationLink = memo(({ href, label, icon, shortcutNumber }) => {
+export const NavigationLink = memo(({ href, label, icon, shortcutNumber, disabled }) => {
   const pathname = usePathname()
   const iconCmp = useMemo(() => icon ?? <AtSignIcon size={16} />, [icon])
+
+  // Pasif buton — tıklanamaz, soluk görünür
+  if (disabled) {
+    return (
+      <span
+        aria-disabled="true"
+        title="Yakında"
+        className="flex cursor-not-allowed items-center justify-between rounded-lg p-2 opacity-40"
+      >
+        <span className="flex items-center gap-2">
+          {iconCmp}
+          <span className="font-medium">{label}</span>
+        </span>
+        <span className="rounded-full bg-gray-100 px-1.5 py-0.5 text-[10px] font-medium text-gray-500">
+          Yakında
+        </span>
+      </span>
+    )
+  }
 
   const isInternal = href.startsWith('/')
   if (!isInternal) {

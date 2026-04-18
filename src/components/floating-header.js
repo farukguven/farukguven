@@ -1,32 +1,19 @@
 'use client'
 
-import { ArrowLeftIcon, RadioIcon } from 'lucide-react'
+import { ArrowLeftIcon } from 'lucide-react'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
 import { memo, useEffect, useMemo, useState } from 'react'
 import Balancer from 'react-wrap-balancer'
 
-import { LoadingSpinner } from '@/components/loading-spinner'
 import { Button } from '@/components/ui/button'
 
 const MobileDrawer = dynamic(() => import('@/components/mobile-drawer').then((mod) => mod.MobileDrawer))
-const SubmitBookmarkDrawer = dynamic(
-  () => import('@/components/submit-bookmark/drawer').then((mod) => mod.SubmitBookmarkDrawer),
-  {
-    loading: () => <LoadingSpinner />,
-    ssr: false
-  }
-)
+
 import { MOBILE_SCROLL_THRESHOLD, SCROLL_AREA_ID } from '@/lib/constants'
 
-export const FloatingHeader = memo(({ scrollTitle, title, goBackLink, bookmarks, currentBookmark, children }) => {
+export const FloatingHeader = memo(({ scrollTitle, title, goBackLink }) => {
   const [transformValues, setTransformValues] = useState({ translateY: 0, opacity: scrollTitle ? 0 : 1 })
-  const pathname = usePathname()
-  const isWritingIndexPage = pathname === '/writing'
-  const isWritingPath = pathname.startsWith('/writing')
-  const isBookmarksIndexPage = pathname === '/bookmarks'
-  const isBookmarkPath = pathname.startsWith('/bookmarks')
 
   const memoizedMobileDrawer = useMemo(() => <MobileDrawer />, [])
 
@@ -49,17 +36,10 @@ export const FloatingHeader = memo(({ scrollTitle, title, goBackLink, bookmarks,
     }
 
     if (scrollTitle) {
-      scrollAreaElem?.addEventListener('scroll', onScroll, {
-        passive: true
-      })
+      scrollAreaElem?.addEventListener('scroll', onScroll, { passive: true })
     }
     return () => scrollAreaElem?.removeEventListener('scroll', onScroll)
   }, [scrollTitle])
-
-  const memoizedSubmitBookmarkDrawer = useMemo(
-    () => <SubmitBookmarkDrawer bookmarks={bookmarks} currentBookmark={currentBookmark} />,
-    [bookmarks, currentBookmark]
-  )
 
   const memoizedBalancer = useMemo(
     () => (
@@ -77,7 +57,7 @@ export const FloatingHeader = memo(({ scrollTitle, title, goBackLink, bookmarks,
           <div className="flex flex-1 items-center gap-1">
             {goBackLink ? (
               <Button variant="ghost" size="icon" className="shrink-0" asChild>
-                <Link href={goBackLink} title="Go back">
+                <Link href={goBackLink} title="Geri dön">
                   <ArrowLeftIcon size={16} />
                 </Link>
               </Button>
@@ -97,26 +77,8 @@ export const FloatingHeader = memo(({ scrollTitle, title, goBackLink, bookmarks,
                 </span>
               )}
               {title && memoizedBalancer}
-              <div className="flex items-center gap-2">
-                {(isWritingIndexPage || isBookmarksIndexPage) && (
-                  <Button variant="outline" size="xs" asChild>
-                    <a
-                      href={isWritingIndexPage ? '/writing.xml' : '/bookmarks.xml'}
-                      title="RSS feed"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <RadioIcon size={16} className="mr-2" />
-                      RSS feed
-                    </a>
-                  </Button>
-                )}
-                {isBookmarkPath && memoizedSubmitBookmarkDrawer}
-              </div>
             </div>
           </div>
-          {/* This is a hack to show writing views with framer motion reveal effect */}
-          {scrollTitle && isWritingPath && <div className="flex min-w-[50px] justify-end">{children}</div>}
         </div>
       </div>
     </header>

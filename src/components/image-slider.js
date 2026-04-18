@@ -15,25 +15,20 @@ export function ImageSlider({ images }) {
   }
 
   return (
-    <div 
+    <div
       ref={scrollRef}
-      className="mt-2 flex overflow-x-auto snap-x snap-mandatory gap-4 pb-4 hide-scrollbar"
-      style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+      className="mt-2 flex overflow-x-auto snap-x snap-mandatory gap-4 pb-4 scrollbar-hide"
     >
       {images.map((imgSrc, idx) => (
-        <div 
+        <div
           key={idx}
           onClick={() => scrollToImage(idx)}
           className="snap-center shrink-0 w-[85%] sm:w-[60%] overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm cursor-pointer transition-transform hover:scale-[1.01]"
         >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={imgSrc} alt={`Görsel ${idx + 1}`} className="h-64 sm:h-80 w-full object-cover" />
         </div>
       ))}
-      <style dangerouslySetInnerHTML={{__html: `
-        .hide-scrollbar::-webkit-scrollbar {
-          display: none;
-        }
-      `}} />
     </div>
   )
 }

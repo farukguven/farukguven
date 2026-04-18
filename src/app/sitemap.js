@@ -1,58 +1,35 @@
-import { getAllPageSlugs, getAllPosts } from '@/lib/contentful'
-import { getBookmarks } from '@/lib/raindrop'
-import { getSortedPosts } from '@/lib/utils'
+import { YAZILAR } from '@/lib/yazilar-data'
 
-export default async function sitemap() {
-  const [allPosts, bookmarks, allPages] = await Promise.all([getAllPosts(), getBookmarks(), getAllPageSlugs()])
+const BASE_URL = 'https://farukguven.com'
 
-  const sortedWritings = getSortedPosts(allPosts)
-  const writings = sortedWritings.map((post) => {
-    return {
-      url: `https://onur.dev/writing/${post.slug}`,
-      lastModified: post.sys.publishedAt,
-      changeFrequency: 'yearly',
-      priority: 0.5
-    }
-  })
+// Statik sayfa listesi — site büyüdükçe buraya ekle
+const STATIC_PAGES = [
+  { path: '', priority: 1, changeFrequency: 'weekly' },
+  { path: 'writing', priority: 0.8, changeFrequency: 'weekly' },
+  { path: 'fotograflar', priority: 0.7, changeFrequency: 'monthly' },
+  { path: 'ekipmanlar', priority: 0.6, changeFrequency: 'monthly' },
+  { path: 'gorsel-seruven', priority: 0.6, changeFrequency: 'yearly' }
+  // İzler, Rafım, Yer İmleri pasif — aktif olunca buraya ekle
+]
 
-  const mappedBookmarks = bookmarks.map((bookmark) => {
-    return {
-      url: `https://onur.dev/bookmarks/${bookmark.slug}`,
-      lastModified: new Date(),
-      changeFrequency: 'daily',
-      priority: 1
-    }
-  })
+export default function sitemap() {
+  const now = new Date()
+  const staticUrls = STATIC_PAGES.map(({ path, priority, changeFrequency }) => ({
+    url: path ? `${BASE_URL}/${path}` : BASE_URL,
+    lastModified: now,
+    changeFrequency,
+    priority
+  }))
 
-  const pages = allPages.map((page) => {
-    let changeFrequency = 'yearly'
-    if (['writing', 'journey'].includes(page.slug)) changeFrequency = 'monthly'
-    if (['bookmarks'].includes(page.slug)) changeFrequency = 'daily'
+  const yaziUrls = YAZILAR.map((y) => ({
+    url: `${BASE_URL}/writing/${y.slug}`,
+    lastModified: new Date(y.date),
+    changeFrequency: 'yearly',
+    priority: 0.7
+  }))
 
-    let lastModified = page.sys.publishedAt
-    if (['writing', 'journey', 'bookmarks'].includes(page.slug)) lastModified = new Date()
+  // Yer İmleri şimdilik pasif — aktif olunca eklenecek
+  // const kategoriUrls = YER_IMLERI_KATEGORILER.map(...)
 
-    let priority = 0.5
-    if (['writing', 'journey'].includes(page.slug)) priority = 0.8
-    if (['bookmarks'].includes(page.slug)) priority = 1
-
-    return {
-      url: `https://onur.dev/${page.slug}`,
-      lastModified,
-      changeFrequency,
-      priority
-    }
-  })
-
-  return [
-    {
-      url: 'https://onur.dev',
-      lastModified: new Date(),
-      changeFrequency: 'yearly',
-      priority: 1
-    },
-    ...pages,
-    ...writings,
-    ...mappedBookmarks
-  ]
+  return [...staticUrls, ...yaziUrls]
 }

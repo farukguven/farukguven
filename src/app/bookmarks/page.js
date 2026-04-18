@@ -1,62 +1,29 @@
 import Link from 'next/link'
-import { Suspense } from 'react'
 
 import { FloatingHeader } from '@/components/floating-header'
-import { ScreenLoadingSpinner } from '@/components/screen-loading-spinner'
 import { ScrollArea } from '@/components/scroll-area'
-import { getPageSeo } from '@/lib/contentful'
-import { getBookmarks } from '@/lib/raindrop'
-import { sortByProperty } from '@/lib/utils'
+import { getKategoriler, YER_IMLERI_META } from '@/lib/yer-imleri-data'
 
-async function fetchData() {
-  const bookmarks = await getBookmarks()
-  const sortedBookmarks = sortByProperty(bookmarks, 'title')
-  return { bookmarks: sortedBookmarks }
+export const metadata = {
+    title: YER_IMLERI_META.title
 }
 
-export default async function Writing() {
-  const { bookmarks } = await fetchData()
+export default function Bookmarks() {
+    const kategoriler = getKategoriler()
 
-  return (
-    <ScrollArea className="lg:hidden">
-      <FloatingHeader title="Bookmarks" bookmarks={bookmarks} />
-      <Suspense fallback={<ScreenLoadingSpinner />}>
-        {bookmarks?.map((bookmark) => {
-          return (
-            <Link
-              key={bookmark._id}
-              href={`/bookmarks/${bookmark.slug}`}
-              className="flex flex-col gap-1 border-b px-4 py-3 text-sm hover:bg-gray-100"
-            >
-              <span className="font-medium">{bookmark.title}</span>
-              <span className="text-slate-500">{bookmark.count} bookmarks</span>
-            </Link>
-          )
-        })}
-      </Suspense>
-    </ScrollArea>
-  )
-}
-
-export async function generateMetadata() {
-  const seoData = await getPageSeo('bookmarks')
-  if (!seoData) return null
-
-  const {
-    seo: { title, description }
-  } = seoData
-  const siteUrl = '/bookmarks'
-
-  return {
-    title,
-    description,
-    openGraph: {
-      title,
-      description,
-      url: siteUrl
-    },
-    alternates: {
-      canonical: siteUrl
-    }
-  }
+    return (
+        <ScrollArea className="lg:hidden">
+            <FloatingHeader title={YER_IMLERI_META.title} />
+            {kategoriler.map((kategori) => (
+                <Link
+                    key={kategori.slug}
+                    href={`/bookmarks/${kategori.slug}`}
+                    className="flex flex-col gap-1 border-b px-4 py-3 text-sm hover:bg-gray-100"
+                >
+                    <span className="font-medium">{kategori.title}</span>
+                    <span className="text-slate-500">{kategori.count} yer imi</span>
+                </Link>
+            ))}
+        </ScrollArea>
+    )
 }

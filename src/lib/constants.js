@@ -1,32 +1,13 @@
 import {
-  ArmchairIcon,
   BookmarkIcon,
+  BookOpenIcon,
   CameraIcon,
+  ClapperboardIcon,
   NavigationIcon,
   PencilLineIcon,
   SparklesIcon,
-  Wand2Icon,
-  ClapperboardIcon,
   WrenchIcon
 } from 'lucide-react'
-
-export const TWEETS_COLLECTION_ID = 15896982
-
-export const COLLECTION_IDS = [
-  18259129,
-  15968768,
-  23598938,
-  16949672,
-  15807896,
-  15807897,
-  15969648,
-  16338467,
-  TWEETS_COLLECTION_ID,
-  25589709,
-  17139082,
-  22029101,
-  39696243
-]
 
 export const LINKS = [
   {
@@ -38,11 +19,6 @@ export const LINKS = [
     href: '/writing',
     label: 'Yazılar',
     icon: <PencilLineIcon size={16} />
-  },
-  {
-    href: '/izler',
-    label: 'İzler',
-    icon: <NavigationIcon size={16} />
   },
   {
     href: '/fotograflar',
@@ -60,11 +36,28 @@ export const LINKS = [
     icon: <ClapperboardIcon size={16} />
   },
   {
+    href: '/izler',
+    label: 'İzler',
+    icon: <NavigationIcon size={16} />,
+    disabled: true
+  },
+  {
+    href: '/rafim',
+    label: 'Rafım',
+    icon: <BookOpenIcon size={16} />,
+    disabled: true
+  },
+  {
     href: '/bookmarks',
     label: 'Yer İmleri',
-    icon: <BookmarkIcon size={16} />
+    icon: <BookmarkIcon size={16} />,
+    disabled: true
   }
 ]
+
+// Girişimlerim - kendi kişisel projelerim / ürünlerim
+// Şimdilik boş — Monipi canlıya alınınca buraya eklenir
+export const GIRISIMLER = []
 
 export const SOCIAL_LINKS = [
   {
@@ -155,16 +148,52 @@ export const SHOOTING_GEAR_ITEMS = [
   }
 ]
 
+// Kullandığım yazılım araçları — çalışma alanına üçüncü collapsible olarak gider
+export const SOFTWARE_ITEMS = [
+  {
+    category: 'Sistem Yönetimi',
+    items: [
+      { title: 'FortiGate', url: 'https://www.fortinet.com', specs: 'Güvenlik duvarı ve ağ yönetimi' },
+      { title: 'Microsoft Azure', url: 'https://azure.microsoft.com', specs: 'Bulut altyapısı ve DevOps' },
+      { title: 'Proxmox VE', url: 'https://www.proxmox.com', specs: 'Sanallaştırma platformu' },
+      { title: 'Zabbix', url: 'https://www.zabbix.com', specs: 'Altyapı izleme ve uyarı' },
+      { title: 'GLPI', url: 'https://glpi-project.org', specs: 'BT varlık ve destek yönetimi' },
+      { title: 'Snipe-IT', url: 'https://snipeitapp.com', specs: 'Açık kaynak envanter yönetimi' }
+    ]
+  },
+  {
+    category: 'Geliştirme',
+    items: [
+      { title: 'VS Code', url: 'https://code.visualstudio.com', specs: 'Ana kod editörüm' },
+      { title: 'OrbStack', url: 'https://orbstack.dev', specs: 'Mac için hafif Docker' },
+      { title: 'GitHub', url: 'https://github.com', specs: 'Kod depolama ve iş birliği' },
+      { title: 'Cursor', url: 'https://cursor.sh', specs: 'AI destekli kod editörü' }
+    ]
+  },
+  {
+    category: 'Tasarım & Video',
+    items: [
+      { title: 'Figma', url: 'https://www.figma.com', specs: 'Arayüz ve prototip tasarımı' },
+      { title: 'DaVinci Resolve', url: 'https://www.blackmagicdesign.com/products/davinciresolve', specs: 'Video düzenleme ve renk' },
+      { title: 'Adobe Lightroom', url: 'https://www.adobe.com/products/photoshop-lightroom.html', specs: 'Fotoğraf düzenleme' }
+    ]
+  },
+  {
+    category: 'Yapay Zekâ',
+    items: [
+      { title: 'Claude', url: 'https://claude.ai', specs: 'Günlük AI asistanım' },
+      { title: 'ChatGPT', url: 'https://chat.openai.com', specs: 'Çeşitli yardımcı görevler' },
+      { title: 'Unreal Engine', url: 'https://www.unrealengine.com', specs: 'Gerçek zamanlı 3D ve animasyon' }
+    ]
+  },
+  {
+    category: 'Üretkenlik',
+    items: [
+      { title: 'Notion', url: 'https://www.notion.so', specs: 'Notlar ve proje yönetimi' },
+      { title: 'Raycast', url: 'https://www.raycast.com', specs: 'Mac için verimlilik launcher\'ı' }
+    ]
+  }
+]
+
 export const SCROLL_AREA_ID = 'scroll-area'
 export const MOBILE_SCROLL_THRESHOLD = 20
-export const SUPABASE_TABLE_NAME = 'pages'
-
-export const SUBMIT_BOOKMARK_FORM_TITLE = 'Submit a bookmark'
-export const SUBMIT_BOOKMARK_FORM_DESCRIPTION =
-  "Send me a website you like and if I like it too, you'll see it in the bookmarks list. With respect, please do not submit more than 5 websites a day."
-
-export const CONTENT_TYPES = {
-  PAGE: 'page',
-  POST: 'post',
-  LOGBOOK: 'logbook'
-}

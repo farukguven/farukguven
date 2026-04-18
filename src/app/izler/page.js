@@ -1,231 +1,134 @@
-'use client'
+import { SparklesIcon } from 'lucide-react'
 
-import { useEffect, useRef, useState, useCallback, useMemo, createRef } from 'react'
-import dynamic from 'next/dynamic'
 import { FloatingHeader } from '@/components/floating-header'
+import { GradientBg3 } from '@/components/gradient-bg'
+import { PageTitle } from '@/components/page-title'
 import { ScrollArea } from '@/components/scroll-area'
-import { TIMELINE_GEZILER, TRAVEL_GUIDE_META } from '@/lib/izler-data'
-import { TravelLocationSection } from '@/components/izler/travel-location-section'
-import { TravelGuideFilters } from '@/components/izler/travel-guide-filters'
-import { Map, List } from 'lucide-react'
+import { PhotoGallery } from '@/components/izler/photo-gallery'
+import { FavoriteSpots } from '@/components/izler/favorite-spots'
+import { IZLER, IZLER_META, groupByYear, getCountryList } from '@/lib/izler-minimal-data'
 
-// Dynamic import for the map to avoid SSR issues with Leaflet
-const TravelGuideMap = dynamic(
-  () => import('@/components/izler/travel-map').then((mod) => ({ default: mod.TravelGuideMap })),
-  { ssr: false, loading: () => <div className="h-full w-full animate-pulse bg-gray-50" /> }
-)
+export const metadata = {
+    title: 'İzler',
+    description: 'Gittiğim yerlerden küçük notlar.'
+}
+
+function IzCard({ iz }) {
+    const hasPhotos = iz.photos && iz.photos.length > 0
+
+    return (
+        <article id={`iz-${iz.id}`} className="relative flex scroll-mt-20 pb-12 last:pb-0">
+            {/* Dikey çizgi */}
+            <div className="absolute inset-0 flex w-5 justify-center">
+                <div className="pointer-events-none h-full w-px border-l border-dashed border-gray-200" />
+            </div>
+
+            {/* Nokta */}
+            <div className="z-0 mt-1.5 grid size-5 shrink-0 place-items-center rounded-full border bg-white shadow-xs">
+                <div className="size-2 rounded-full bg-gray-400" />
+            </div>
+
+            {/* İçerik */}
+            <div className="grow pl-4 lg:pl-8">
+                {/* Başlık */}
+                <div className="mb-1 flex items-baseline gap-2.5">
+                    <span className="text-base leading-none">{iz.flag}</span>
+                    <h3 className="text-lg font-semibold tracking-tight text-gray-900">
+                        {iz.city}
+                    </h3>
+                    <span className="text-xs text-gray-400">· {iz.country}</span>
+                </div>
+
+                {/* Tarih */}
+                <p className="mb-3 text-xs text-gray-400">{iz.date}</p>
+
+                {/* Not */}
+                <p className="text-[15px] leading-relaxed text-gray-600">{iz.note}</p>
+
+                {/* Highlight / Tavsiye */}
+                {iz.highlight && (
+                    <div className="mt-3 flex items-start gap-2 rounded-lg bg-gray-50 px-3 py-2">
+                        <SparklesIcon size={13} className="mt-0.5 shrink-0 text-gray-400" />
+                        <p className="text-[13px] leading-relaxed text-gray-600">{iz.highlight}</p>
+                    </div>
+                )}
+
+                {/* Fotoğraflar */}
+                {hasPhotos && <PhotoGallery photos={iz.photos} city={iz.city} />}
+
+                {/* Beğendiğim yerler */}
+                <FavoriteSpots spots={iz.favoriteSpots} city={iz.city} />
+            </div>
+        </article>
+    )
+}
 
 export default function Izler() {
-  const [activeId, setActiveId] = useState(TIMELINE_GEZILER[0]?.id)
-  const [activeFilter, setActiveFilter] = useState('all')
-  const [showRoute, setShowRoute] = useState(false)
-  const [mobileView, setMobileView] = useState('guide') // 'map' | 'guide'
-  const contentRef = useRef(null)
-  const isScrollingFromClick = useRef(false)
+    const gruplar = groupByYear(IZLER)
+    const ulkeler = getCountryList(IZLER)
 
-  const sectionRefs = useRef(
-    TIMELINE_GEZILER.reduce((acc, item) => {
-      acc[item.id] = createRef()
-      return acc
-    }, {})
-  )
+    return (
+        <ScrollArea useScrollAreaId>
+            <GradientBg3 />
+            <FloatingHeader scrollTitle={IZLER_META.title} />
+            <div className="content-wrapper">
+                <div className="content">
+                    <PageTitle title={IZLER_META.title} />
 
-  // Filter locations
-  const filteredLocations = useMemo(() => {
-    if (activeFilter === 'featured') {
-      return TIMELINE_GEZILER.filter((l) => l.featured)
-    }
-    return TIMELINE_GEZILER
-  }, [activeFilter])
+                    <p className="mb-4 text-gray-600">{IZLER_META.subtitle}</p>
 
-  // Intersection observer for scroll-based active section
-  useEffect(() => {
-    const observerOptions = {
-      root: null,
-      rootMargin: '-40% 0px -40% 0px',
-      threshold: 0
-    }
+                    <p className="mb-4 text-sm text-gray-400">
+                        <span className="font-semibold text-gray-900 tabular-nums">{IZLER.length}</span>{' '}
+                        şehir · <span className="font-semibold text-gray-900 tabular-nums">{ulkeler.length}</span>{' '}
+                        ülke
+                    </p>
 
-    const observerCallback = (entries) => {
-      if (isScrollingFromClick.current) return
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setActiveId(entry.target.id)
-        }
-      })
-    }
+                    {/* Ülke çipleri — tıklayınca o ülkenin ilk şehrine kaydırır */}
+                    <div className="mb-12 flex flex-wrap gap-1.5">
+                        {ulkeler.map((u) => (
+                            <a
+                                key={u.country}
+                                href={`#iz-${u.firstId}`}
+                                className="group inline-flex items-center gap-1.5 rounded-full border border-gray-200 bg-white/60 px-3 py-1 text-xs text-gray-700 transition-all duration-200 hover:border-gray-400 hover:bg-white hover:text-gray-900"
+                            >
+                                <span className="text-sm leading-none">{u.flag}</span>
+                                <span className="font-medium">{u.country}</span>
+                                <span className="tabular-nums text-gray-400 group-hover:text-gray-500">
+                                    {u.cityCount}
+                                </span>
+                            </a>
+                        ))}
+                    </div>
 
-    const observer = new IntersectionObserver(observerCallback, observerOptions)
+                    <div className="flex flex-col gap-14">
+                        {gruplar.map((grup) => (
+                            <section
+                                key={grup.year}
+                                className="flex flex-col items-baseline gap-6 md:flex-row md:gap-12"
+                            >
+                                <h2 className="sticky top-4 w-20 shrink-0 text-2xl font-bold text-gray-900">
+                                    {grup.year}
+                                </h2>
+                                <div className="w-full min-w-0 flex-1">
+                                    {grup.items.map((iz) => (
+                                        <IzCard key={iz.id} iz={iz} />
+                                    ))}
+                                </div>
+                            </section>
+                        ))}
+                    </div>
 
-    filteredLocations.forEach((item) => {
-      const ref = sectionRefs.current[item.id]
-      if (ref?.current) {
-        observer.observe(ref.current)
-      }
-    })
-
-    return () => {
-      filteredLocations.forEach((item) => {
-        const ref = sectionRefs.current[item.id]
-        if (ref?.current) {
-          observer.unobserve(ref.current)
-        }
-      })
-    }
-  }, [filteredLocations])
-
-  // Scroll to location (from map click or quick jump)
-  const scrollToLocation = useCallback((id) => {
-    setActiveId(id)
-    isScrollingFromClick.current = true
-
-    const el = document.getElementById(id)
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth', block: 'start' })
-      // Reset after scroll completes
-      setTimeout(() => {
-        isScrollingFromClick.current = false
-      }, 1200)
-    }
-
-    // On mobile, switch to guide view when marker clicked
-    setMobileView('guide')
-  }, [])
-
-  const handleMarkerClick = useCallback((id) => {
-    scrollToLocation(id)
-  }, [scrollToLocation])
-
-  return (
-    <ScrollArea className="flex flex-col relative w-full h-full overflow-x-hidden">
-      {/* Mobile header */}
-      <FloatingHeader scrollTitle="İzler" />
-
-      {/* Page header (mobile) */}
-      {mobileView === 'guide' && (
-        <div className="px-4 pt-8 pb-2 sm:px-5 lg:hidden">
-          <h1 className="text-2xl font-semibold tracking-tight text-gray-900">
-            {TRAVEL_GUIDE_META.title}
-          </h1>
-          <p className="mt-1 mb-0 text-sm text-gray-400">
-            {TRAVEL_GUIDE_META.subtitle}
-          </p>
-        </div>
-      )}
-
-      {/* Mobile view toggle */}
-      <div className="sticky top-12 z-20 flex items-center justify-between gap-2 overflow-hidden border-b border-gray-100 bg-white/95 backdrop-blur-sm px-3 py-2.5 sm:px-5 lg:hidden">
-        <div className="flex shrink-0 items-center gap-1 rounded-lg bg-gray-50 p-0.5">
-          <button
-            onClick={() => setMobileView('guide')}
-            className={`flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-medium transition-all duration-200 ${
-              mobileView === 'guide'
-                ? 'bg-white text-gray-900 shadow-sm'
-                : 'text-gray-400 hover:text-gray-600'
-            }`}
-          >
-            <List size={12} />
-            Rehber
-          </button>
-          <button
-            onClick={() => setMobileView('map')}
-            className={`flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-medium transition-all duration-200 ${
-              mobileView === 'map'
-                ? 'bg-white text-gray-900 shadow-sm'
-                : 'text-gray-400 hover:text-gray-600'
-            }`}
-          >
-            <Map size={12} />
-            Harita
-          </button>
-        </div>
-        <TravelGuideFilters
-          locations={TIMELINE_GEZILER}
-          activeFilter={activeFilter}
-          onFilterChange={setActiveFilter}
-          onLocationJump={scrollToLocation}
-          showRoute={showRoute}
-          onToggleRoute={() => setShowRoute((s) => !s)}
-        />
-      </div>
-
-      {/* Mobile map */}
-      {mobileView === 'map' && (
-        <div className="h-[calc(100dvh-180px)] w-full lg:hidden">
-          <TravelGuideMap
-            locations={filteredLocations}
-            activeId={activeId}
-            onMarkerClick={handleMarkerClick}
-            showRoute={showRoute}
-          />
-        </div>
-      )}
-
-      {/* Desktop split layout */}
-      <div className="flex w-full min-w-0 overflow-x-clip">
-        {/* Left: Sticky map (desktop) */}
-        <div className="hidden lg:block lg:w-[42%] xl:w-[42%]">
-          <div className="sticky top-0 h-dvh">
-            <TravelGuideMap
-              locations={filteredLocations}
-              activeId={activeId}
-              onMarkerClick={handleMarkerClick}
-              showRoute={showRoute}
-            />
-          </div>
-        </div>
-
-        {/* Right: Scrollable content */}
-        <div
-          ref={contentRef}
-          className={`w-full min-w-0 lg:w-[58%] xl:w-[58%] ${mobileView === 'map' ? 'hidden lg:block' : ''}`}
-        >
-          {/* Desktop header + filters */}
-          <div className="hidden lg:block sticky top-0 z-20 bg-white/95 backdrop-blur-sm border-b border-gray-100">
-            <div className="px-8 xl:px-12 pt-6 pb-4">
-              <div className="flex items-end justify-between mb-4">
-                <div>
-                  <h1 className="text-2xl font-semibold tracking-tight text-gray-900 mb-0">
-                    {TRAVEL_GUIDE_META.title}
-                  </h1>
-                  <p className="mt-0.5 mb-0 text-sm text-gray-400">
-                    {TRAVEL_GUIDE_META.subtitle}
-                  </p>
+                    <div className="mt-16 rounded-xl bg-gray-50 p-6 text-center">
+                        <p className="text-sm text-gray-600">
+                            Gittiğim her yer küçük bir iz bırakıyor. Uzun gezi notlarını ve düşüncelerimi{' '}
+                            <a href="/writing" className="font-medium text-gray-900 hover:underline">
+                                Yazılar
+                            </a>{' '}
+                            sayfasında paylaşıyorum.
+                        </p>
+                    </div>
                 </div>
-                <span className="text-xs text-gray-300 tabular-nums">
-                  {filteredLocations.length} konum
-                </span>
-              </div>
-              <TravelGuideFilters
-                locations={TIMELINE_GEZILER}
-                activeFilter={activeFilter}
-                onFilterChange={setActiveFilter}
-                onLocationJump={scrollToLocation}
-                showRoute={showRoute}
-                onToggleRoute={() => setShowRoute((s) => !s)}
-              />
             </div>
-          </div>
-
-          {/* Location sections */}
-          <div className="px-4 pt-8 pb-20 sm:px-5 lg:px-8 xl:px-12">
-            {filteredLocations.map((location) => (
-              <TravelLocationSection
-                key={location.id}
-                ref={sectionRefs.current[location.id]}
-                location={location}
-                isActive={activeId === location.id}
-              />
-            ))}
-
-            {filteredLocations.length === 0 && (
-              <div className="flex flex-col items-center justify-center py-20 text-center">
-                <p className="text-sm text-gray-400">Bu filtreyle eşleşen konum bulunamadı.</p>
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
-    </ScrollArea>
-  )
+        </ScrollArea>
+    )
 }
