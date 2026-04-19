@@ -201,7 +201,8 @@ export default function CalismaAlanim() {
                         </div>
                     </div>
 
-                    {/* Yazılımlar & Araçlar - Collapsible */}
+                    {/* Yazılımlar & Araçlar - Collapsible — şimdilik pasif, içerik hazır olunca aç */}
+                    {false && (
                     <div className="mt-8">
                         <button
                             onClick={() => setIsSoftwareOpen(!isSoftwareOpen)}
@@ -254,6 +255,7 @@ export default function CalismaAlanim() {
                             </div>
                         </div>
                     </div>
+                    )}
 
                     {/* Footer Note */}
                     <div className="mt-16 rounded-xl bg-gray-50 p-6 text-center">
