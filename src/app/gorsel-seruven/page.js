@@ -207,25 +207,6 @@ export default function Filmografi() {
                     </div>
                   </div>
 
-                  {/* Timeline Item: Hazin Son */}
-                  <div className="relative flex pb-12 last:pb-0">
-                    <div className="absolute inset-0 flex w-5 justify-center">
-                      <div className="pointer-events-none h-full w-px border-l border-dashed border-gray-200"></div>
-                    </div>
-                    <div className="z-0 mt-1 grid size-5 shrink-0 place-items-center rounded-full border bg-white shadow-xs">
-                      <div className="size-2 rounded-full bg-blue-600" />
-                    </div>
-                    
-                    <div className="grow pl-4 lg:pl-8">
-                      <div className="flex flex-col gap-4">
-                        <h3 className="text-xl font-bold text-gray-900">Ve Hazin Son...</h3>
-                        <p className="text-gray-600 leading-relaxed italic">
-                            Yıllar süren hevesli çalışmalarımızın ardından vizyona giren projemiz, maalesef sadece 1 hafta sinemalarda kaldıktan sonra vizyondan kaldırıldı. Sonrasında ekipteki herkes kendi yoluna, farklı işlere yöneldi. Yine de dönüp baktığımızda hepimiz için unutulmaz, tecrübeyle dolu güzel bir macera olarak hafızalarımızda yer edindi.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
                 </section>
               </div>
 
@@ -234,7 +215,7 @@ export default function Filmografi() {
                 <h2 className="text-2xl font-bold mt-1 text-gray-900 w-20">2014</h2>
                 <section className="flex-1 w-full min-w-0">
                   
-                  {/* Timeline Item: Korkmaz ve Çift Mesai */}
+                  {/* Timeline Item: Sektöre Ara */}
                   <div className="relative flex pb-12 last:pb-0">
                     <div className="absolute inset-0 flex w-5 justify-center">
                       <div className="pointer-events-none h-full w-px border-l border-dashed border-gray-200"></div>
@@ -242,12 +223,12 @@ export default function Filmografi() {
                     <div className="z-0 mt-1 grid size-5 shrink-0 place-items-center rounded-full border bg-white shadow-xs">
                       <div className="size-2 rounded-full bg-blue-600" />
                     </div>
-                    
+
                     <div className="grow pl-4 lg:pl-8">
                       <div className="flex flex-col gap-4">
-                        <h3 className="text-xl font-bold text-gray-900">Sektöre Ara ve Çift Mesai</h3>
+                        <h3 className="text-xl font-bold text-gray-900">Sektöre Ara</h3>
                         <p className="text-gray-600 leading-relaxed">
-                            Sinema projemiz tamamlandıktan sonra kendime yeni bir yol çizmek ve kurumsal hayatta tecrübe edinmek amacıyla Korkmaz Mutfak Eşyaları'nda IT pozisyonunda çalışmaya başladım. Aradan geçen bir yıllık yoğun iş temposunun ardından içimdeki sanat hevesine engel olamayıp mevcut işimi bırakmadan sektöre ufaktan geri döndüm. Gündüzleri ofisteki mesaimi tamamlıyor, akşamdan sabaha kadar ise kısa film çekimleri, görsel efekt ve post-prodüksiyon işleriyle ilgileniyordum.
+                            Sinema projemiz tamamlandıktan sonra kendime yeni bir yol çizmek ve kurumsal hayatta tecrübe edinmek amacıyla Korkmaz Mutfak Eşyaları'nda IT pozisyonunda çalışmaya başladım. Aradan geçen bir yıllık yoğun iş temposunun ardından içimdeki sanat hevesine engel olamayıp mevcut işimi bırakmadan sektöre ufaktan geri döndüm. Gündüzleri IT alanındaki işlerimi tamamlıyor, akşamları ise kısa film çekimleri, görsel efekt ve post-prodüksiyon işleriyle ilgileniyordum.
                         </p>
                       </div>
                     </div>
@@ -266,7 +247,7 @@ export default function Filmografi() {
                       <div className="flex flex-col gap-4">
                         <h3 className="text-xl font-bold text-gray-900">Genç Yaşta Eğitmenlik Deneyimi</h3>
                         <p className="text-gray-600 leading-relaxed">
-                            Yoğun temponun getirdiği tecrübelerle, henüz 18-19 yaşlarımdayken benden yaşça büyük öğrencilere kamera kullanımı ve post-prodüksiyon yazılımları üzerine eğitimler verme şansı yakaladım. Zor şartlarda öğrendiklerimi başkalarına aktarabilmek benim için oldukça değerliydi.
+                            Yoğun temponun getirdiği tecrübelerle, henüz 19 yaşımdayken üniversite öğrencilerine kamera kullanımı ve post-prodüksiyon yazılımları üzerine eğitimler verme şansı yakaladım. Zor şartlarda öğrendiklerimi başkalarına aktarabilmek benim için oldukça değerliydi.
                         </p>
                       </div>
                     </div>
