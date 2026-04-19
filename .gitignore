@@ -30,3 +30,7 @@ yarn-error.log*
 # Million Lint
 .million
 /farukguven/
+
+# Orijinal fotoğraf yedekleri (scripts/optimize-photos.js tarafından oluşturuluyor)
+**/.originals/
+public/assets/**/Thumbs.db

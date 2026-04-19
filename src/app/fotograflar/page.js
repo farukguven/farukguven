@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useMemo } from 'react'
+import Image from 'next/image'
 import { CameraIcon, MapPinIcon, CalendarIcon, ApertureIcon, TimerIcon, FocusIcon, XIcon, ChevronLeftIcon, ChevronRightIcon } from 'lucide-react'
 
 import { FloatingHeader } from '@/components/floating-header'
@@ -406,7 +407,7 @@ function Lightbox({ images, currentIndex, onClose, onNext, onPrev }) {
 }
 
 // Image Card Component
-function ImageCard({ img, onClick }) {
+function ImageCard({ img, onClick, priority = false }) {
     const [isHovered, setIsHovered] = useState(false)
 
     return (
@@ -416,11 +417,13 @@ function ImageCard({ img, onClick }) {
             onMouseLeave={() => setIsHovered(false)}
             onClick={onClick}
         >
-            <img
+            <Image
                 src={img.src}
                 alt={img.alt}
-                className={`size-full object-cover transition-transform duration-500 pointer-events-none ${isHovered ? 'scale-105' : ''}`}
-                loading="lazy"
+                fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                className={`object-cover transition-transform duration-500 pointer-events-none ${isHovered ? 'scale-105' : ''}`}
+                priority={priority}
                 onContextMenu={(e) => e.preventDefault()}
                 draggable={false}
             />
