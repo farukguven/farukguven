@@ -1,4 +1,4 @@
-import { SparklesIcon } from 'lucide-react'
+import { SparklesIcon, MapIcon, ExternalLinkIcon } from 'lucide-react'
 
 import { FloatingHeader } from '@/components/floating-header'
 import { GradientBg3 } from '@/components/gradient-bg'
@@ -46,6 +46,34 @@ function IzCard({ iz }) {
                     <div className="mt-3 flex items-start gap-2 rounded-lg bg-gray-50 px-3 py-2">
                         <SparklesIcon size={13} className="mt-0.5 shrink-0 text-gray-400" />
                         <p className="text-[13px] leading-relaxed text-gray-600">{iz.highlight}</p>
+                    </div>
+                )}
+
+                {/* Google My Maps gömme */}
+                {iz.mapEmbedUrl && (
+                    <div className="mt-4 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">
+                        <div className="flex items-center justify-between border-b border-gray-100 bg-gray-50/50 px-4 py-2">
+                            <div className="flex items-center gap-2 text-xs font-medium text-gray-600">
+                                <MapIcon size={14} className="text-gray-400" />
+                                <span>{iz.city} rotası ve pinlediğim yerler</span>
+                            </div>
+                            <a
+                                href={iz.mapEmbedUrl.replace('/embed?', '/viewer?')}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-1 text-xs font-medium text-blue-600 transition-colors hover:text-blue-700"
+                            >
+                                Haritada aç
+                                <ExternalLinkIcon size={12} />
+                            </a>
+                        </div>
+                        <iframe
+                            src={iz.mapEmbedUrl}
+                            className="h-[380px] w-full border-0"
+                            loading="lazy"
+                            referrerPolicy="no-referrer-when-downgrade"
+                            title={`${iz.city} haritası`}
+                        />
                     </div>
                 )}
 

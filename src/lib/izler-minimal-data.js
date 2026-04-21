@@ -109,6 +109,7 @@ export const IZLER = [
         flag: '🇵🇹',
         note: 'Yedi tepe üzerine kurulmuş Lizbon, tramvay sesleri, azulejo kaplı cepheler ve fado ile ruhuna işliyor.',
         highlight: 'Pastéis de Belém — deneyimlemeden dönme.',
+        mapEmbedUrl: 'https://www.google.com/maps/d/embed?mid=1PVlx7JiGPPxSGtWN34NAvyaFfjJ9WJ2v&ehbc=2E312F',
         photos: []
     },
 
