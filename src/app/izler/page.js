@@ -6,7 +6,7 @@ import { PageTitle } from '@/components/page-title'
 import { ScrollArea } from '@/components/scroll-area'
 import { PhotoGallery } from '@/components/izler/photo-gallery'
 import { FavoriteSpots } from '@/components/izler/favorite-spots'
-import { IZLER, IZLER_META, groupByYear, getCountryList } from '@/lib/izler-minimal-data'
+import { IZLER, IZLER_META, groupByCountry, getCountryList } from '@/lib/izler-minimal-data'
 
 export const metadata = {
     title: 'İzler',
@@ -32,18 +32,14 @@ function IzCard({ iz }) {
             <div className="grow pl-4 lg:pl-8">
                 {/* Başlık */}
                 <div className="mb-1 flex items-baseline gap-2.5">
-                    <span className="text-base leading-none">{iz.flag}</span>
                     <h3 className="text-lg font-semibold tracking-tight text-gray-900">
                         {iz.city}
                     </h3>
-                    <span className="text-xs text-gray-400">· {iz.country}</span>
+                    {iz.date && <span className="text-xs text-gray-400">· {iz.date}</span>}
                 </div>
 
-                {/* Tarih */}
-                <p className="mb-3 text-xs text-gray-400">{iz.date}</p>
-
                 {/* Not */}
-                <p className="text-[15px] leading-relaxed text-gray-600">{iz.note}</p>
+                <p className="mt-2 text-[15px] leading-relaxed text-gray-600">{iz.note}</p>
 
                 {/* Highlight / Tavsiye */}
                 {iz.highlight && (
@@ -64,7 +60,7 @@ function IzCard({ iz }) {
 }
 
 export default function Izler() {
-    const gruplar = groupByYear(IZLER)
+    const gruplar = groupByCountry(IZLER)
     const ulkeler = getCountryList(IZLER)
 
     return (
@@ -103,12 +99,16 @@ export default function Izler() {
                     <div className="flex flex-col gap-14">
                         {gruplar.map((grup) => (
                             <section
-                                key={grup.year}
+                                key={grup.country}
+                                id={`ulke-${grup.items[0].id}`}
                                 className="flex flex-col items-baseline gap-6 md:flex-row md:gap-12"
                             >
-                                <h2 className="sticky top-4 w-20 shrink-0 text-2xl font-bold text-gray-900">
-                                    {grup.year}
-                                </h2>
+                                <div className="sticky top-4 flex w-32 shrink-0 items-baseline gap-2">
+                                    <span className="text-2xl leading-none">{grup.flag}</span>
+                                    <h2 className="text-xl font-bold tracking-tight text-gray-900">
+                                        {grup.country}
+                                    </h2>
+                                </div>
                                 <div className="w-full min-w-0 flex-1">
                                     {grup.items.map((iz) => (
                                         <IzCard key={iz.id} iz={iz} />

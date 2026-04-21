@@ -38,8 +38,7 @@ export const LINKS = [
   {
     href: '/izler',
     label: 'İzler',
-    icon: <NavigationIcon size={16} />,
-    disabled: true
+    icon: <NavigationIcon size={16} />
   },
   {
     href: '/rafim',
