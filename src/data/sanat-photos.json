@@ -34,6 +34,23 @@
     }
   },
   {
+    "src": "/assets/sanat/DSC05654.jpg",
+    "alt": "Objektifimden bir kare",
+    "height": "tall",
+    "width": 2560,
+    "heightPx": 3840,
+    "exif": {
+      "location": "Bilinmiyor",
+      "date": "Mart 2026",
+      "camera": "SONY ILCE-7CM2",
+      "lens": "FE 35mm F1.4 GM",
+      "aperture": "f/1.4",
+      "shutter": "1/4000 s",
+      "focalLength": "35 mm (Eşdeğer)",
+      "iso": "ISO 100"
+    }
+  },
+  {
     "src": "/assets/sanat/IMG_8401.jpg",
     "alt": "Köln'dan bir kare",
     "height": "tall",
