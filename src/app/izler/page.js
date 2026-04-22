@@ -7,6 +7,7 @@ import { PageTitle } from '@/components/page-title'
 import { ScrollArea } from '@/components/scroll-area'
 import { PhotoGallery } from '@/components/izler/photo-gallery'
 import { FavoriteSpots } from '@/components/izler/favorite-spots'
+import { ScrollToTop } from '@/components/scroll-to-top'
 import { IZLER, IZLER_META, groupByCountry, getCountryList } from '@/lib/izler-minimal-data'
 
 export const metadata = {
@@ -169,6 +170,7 @@ export default function Izler() {
                     </div>
                 </div>
             </div>
+            <ScrollToTop />
         </ScrollArea>
     )
 }
