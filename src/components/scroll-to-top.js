@@ -30,12 +30,14 @@ export function ScrollToTop({ threshold = 400 }) {
       onClick={handleClick}
       aria-label="Sayfanın en üstüne çık"
       style={{
-        WebkitBackdropFilter: 'blur(18px) saturate(180%)',
-        backdropFilter: 'blur(18px) saturate(180%)',
+        WebkitBackdropFilter: 'blur(6px) saturate(200%) contrast(118%) brightness(108%)',
+        backdropFilter: 'blur(6px) saturate(200%) contrast(118%) brightness(108%)',
+        backgroundImage:
+          'radial-gradient(circle at 30% 25%, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.15) 35%, rgba(255,255,255,0.02) 70%)',
         boxShadow:
-          '0 8px 24px -6px rgba(0,0,0,0.18), 0 2px 6px -2px rgba(0,0,0,0.08), inset 0 1px 0 0 rgba(255,255,255,0.6), inset 0 -1px 0 0 rgba(0,0,0,0.05)'
+          '0 10px 28px -6px rgba(0,0,0,0.22), 0 2px 6px -2px rgba(0,0,0,0.10), inset 0 1.5px 0 0 rgba(255,255,255,0.85), inset 0 -1.5px 2px 0 rgba(0,0,0,0.08), inset 0 0 0 1px rgba(255,255,255,0.25)'
       }}
-      className={`fixed bottom-5 right-5 z-40 grid size-11 place-items-center rounded-full border border-white/40 bg-white/25 text-gray-800 ring-1 ring-black/5 transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/35 hover:text-gray-900 active:translate-y-0 md:bottom-8 md:right-8 ${
+      className={`fixed bottom-5 right-5 z-40 grid size-11 place-items-center rounded-full border border-white/50 bg-white/10 text-gray-800 ring-1 ring-black/5 transition-all duration-300 hover:-translate-y-0.5 hover:scale-105 hover:bg-white/15 hover:text-gray-900 active:scale-100 active:translate-y-0 md:bottom-8 md:right-8 ${
         visible
           ? 'pointer-events-auto translate-y-0 opacity-100'
           : 'pointer-events-none translate-y-3 opacity-0'
