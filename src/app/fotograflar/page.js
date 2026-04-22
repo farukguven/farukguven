@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState } from 'react'
 import Image from 'next/image'
 import { CameraIcon, MapPinIcon, CalendarIcon, ApertureIcon, TimerIcon, FocusIcon, XIcon, ChevronLeftIcon, ChevronRightIcon } from 'lucide-react'
 
@@ -8,282 +8,11 @@ import { FloatingHeader } from '@/components/floating-header'
 import { GradientBg3 } from '@/components/gradient-bg'
 import { PageTitle } from '@/components/page-title'
 import { ScrollArea } from '@/components/scroll-area'
+import sanatPhotos from '@/data/sanat-photos.json'
 
-// Images with EXIF data
-export const images = [
-    {
-        src: '/assets/sanat/IMG_0161.jpg',
-        alt: 'İstanbul\'dan Bir Kare',
-        height: 'medium',
-        exif: {
-            title: 'Kedi ve Şehir',
-            location: 'İstanbul, Türkiye',
-            date: 'Nisan 2024',
-            camera: 'iPhone 15 Pro Max',
-            lens: 'Apple Wide Camera f/1.78',
-            aperture: 'f/1.7',
-            shutter: '1/5800 s',
-            focalLength: '24 mm (Eşdeğer)',
-            iso: 'ISO 64'
-        }
-    },
-    {
-        src: '/assets/sanat/IMG_1436.jpg',
-        alt: 'Sevilla',
-        height: 'tall',
-        exif: {
-            title: 'Sevilla Sokakları',
-            location: 'Sevilla, İspanya',
-            date: 'Mayıs 2024',
-            camera: 'iPhone 15 Pro Max',
-            lens: 'Apple Telephoto Camera f/2.8',
-            aperture: 'f/2.8',
-            shutter: '1/89 s',
-            focalLength: '120 mm (Eşdeğer)',
-            iso: 'ISO 200'
-        }
-    },
-    {
-        src: '/assets/sanat/IMG_1673.jpg',
-        alt: 'Lizbon',
-        height: 'tall',
-        exif: {
-            title: 'Lizbon Manzarası',
-            location: 'Lizbon, Portekiz',
-            date: 'Mayıs 2024',
-            camera: 'iPhone 15 Pro Max',
-            lens: 'Apple Wide Camera f/1.78',
-            aperture: 'f/1.7',
-            shutter: '1/3250 s',
-            focalLength: '24 mm (Eşdeğer)',
-            iso: 'ISO 64'
-        }
-    },
-    {
-        src: '/assets/sanat/IMG_7117.jpg',
-        alt: 'Kotor',
-        height: 'short',
-        exif: {
-            title: 'Kotor Körfezi',
-            location: 'Kotor, Karadağ',
-            date: 'Ekim 2024',
-            camera: 'iPhone 15 Pro Max',
-            lens: 'Apple Wide Camera f/1.78',
-            aperture: 'f/1.7',
-            shutter: '1/9400 s',
-            focalLength: '24 mm (Eşdeğer)',
-            iso: 'ISO 100'
-        }
-    },
-    {
-        src: '/assets/sanat/IMG_2464.JPG',
-        alt: 'Zaandam 1',
-        height: 'tall',
-        exif: {
-            title: 'Zaandam Mimarisi',
-            location: 'Zaandam, Hollanda',
-            date: 'Mayıs 2024',
-            camera: 'iPhone 15 Pro Max',
-            lens: 'Apple Wide Camera f/1.78',
-            aperture: 'f/1.7',
-            shutter: '1/4950 s',
-            focalLength: '24 mm (Eşdeğer)',
-            iso: 'ISO 80'
-        }
-    },
-    {
-        src: '/assets/sanat/IMG_2634.JPG',
-        alt: 'Zaandam 2',
-        height: 'medium',
-        exif: {
-            title: 'Zaandam Yel değirmeni',
-            location: 'Zaandam, Hollanda',
-            date: 'Mayıs 2024',
-            camera: 'iPhone 15 Pro Max',
-            lens: 'Apple Wide Camera f/1.78',
-            aperture: 'f/1.7',
-            shutter: '1/3100 s',
-            focalLength: '24 mm (Eşdeğer)',
-            iso: 'ISO 80'
-        }
-    },
-    {
-        src: '/assets/sanat/DSC03247.jpg',
-        alt: 'Anı 1',
-        height: 'short',
-        exif: {
-            title: 'Özel Anı',
-            location: 'Bilinmiyor',
-            date: 'Haziran 2025',
-            camera: 'Sony A7C II',
-            lens: 'Sony FE 35mm f/1.4',
-            aperture: 'f/1.4',
-            shutter: '1/4000 s',
-            focalLength: '35 mm',
-            iso: 'ISO 100'
-        }
-    },
-    {
-        src: '/assets/sanat/IMG_0730.JPG',
-        alt: 'Kurtuba',
-        height: 'tall',
-        exif: {
-            title: 'Kurtuba Sokakları',
-            location: 'Kurtuba, İspanya',
-            date: 'Nisan 2024',
-            camera: 'iPhone 15 Pro Max',
-            lens: 'Apple Wide Camera f/1.78',
-            aperture: 'f/1.7',
-            shutter: '1/50 s',
-            focalLength: '24 mm (Eşdeğer)',
-            iso: 'ISO 500'
-        }
-    },
-    {
-        src: '/assets/sanat/IMG_0735.jpg',
-        alt: 'Luzern',
-        height: 'medium',
-        exif: {
-            title: 'Luzern Manzarası',
-            location: 'Luzern, İsviçre',
-            date: 'Mart 2026',
-            camera: 'iPhone 17 Pro Max',
-            lens: 'Apple Wide Camera',
-            aperture: 'f/1.7',
-            shutter: '1/11300 s',
-            focalLength: '24 mm (Eşdeğer)',
-            iso: 'ISO 64'
-        }
-    },
-    {
-        src: '/assets/sanat/IMG_2964.jpg',
-        alt: 'Bosna Hersek',
-        height: 'tall',
-        exif: {
-            title: 'Doğa Manzarası',
-            location: 'Prozor-Rama, Bosna Hersek',
-            date: 'Temmuz 2025',
-            camera: 'iPhone 15 Pro Max',
-            lens: 'Apple Telephoto Camera f/2.8',
-            aperture: 'f/2.8',
-            shutter: '1/780 s',
-            focalLength: '120 mm (Eşdeğer)',
-            iso: 'ISO 50'
-        }
-    },
-    {
-        src: '/assets/sanat/IMG_3048.jpg',
-        alt: 'Seyahat',
-        height: 'medium',
-        exif: {
-            title: 'Yolculuk',
-            location: 'Balkanlar',
-            date: 'Temmuz 2025',
-            camera: 'iPhone 15 Pro Max',
-            lens: 'Apple Wide Camera f/1.78',
-            aperture: 'f/1.7',
-            shutter: '1/6000 s',
-            focalLength: '24 mm (Eşdeğer)',
-            iso: 'ISO 100'
-        }
-    },
-    {
-        src: '/assets/sanat/IMG_3185.JPG',
-        alt: 'Seyahat 2',
-        height: 'short',
-        exif: {
-            title: 'Yolculuk Anısı',
-            location: 'Balkanlar',
-            date: 'Temmuz 2025',
-            camera: 'iPhone 15 Pro Max',
-            lens: 'Apple Wide Camera f/1.78',
-            aperture: 'f/1.7',
-            shutter: '1/3200 s',
-            focalLength: '24 mm (Eşdeğer)',
-            iso: 'ISO 100'
-        }
-    },
-    {
-        src: '/assets/sanat/IMG_6588.jpg',
-        alt: 'Ohri',
-        height: 'tall',
-        exif: {
-            title: 'Ohri Gölü',
-            location: 'Ohri, Kuzey Makedonya',
-            date: 'Ekim 2024',
-            camera: 'iPhone 15 Pro Max',
-            lens: 'Apple Wide Camera f/1.78',
-            aperture: 'f/1.7',
-            shutter: '1/11600 s',
-            focalLength: '24 mm (Eşdeğer)',
-            iso: 'ISO 100'
-        }
-    },
-    {
-        src: '/assets/sanat/IMG_7112.jpg',
-        alt: 'Manzara',
-        height: 'medium',
-        exif: {
-            title: 'Türkiye Manzarası',
-            location: 'Türkiye',
-            date: 'Ocak 2026',
-            camera: 'iPhone 17 Pro Max',
-            lens: 'Apple Telephoto Camera',
-            aperture: 'f/2.8',
-            shutter: '1/640 s',
-            focalLength: '120 mm (Eşdeğer)',
-            iso: 'ISO 25'
-        }
-    },
-    {
-        src: '/assets/sanat/IMG_7148.jpg',
-        alt: 'Kotor 2',
-        height: 'tall',
-        exif: {
-            title: 'Kotor Surları',
-            location: 'Kotor, Karadağ',
-            date: 'Ekim 2024',
-            camera: 'iPhone 15 Pro Max',
-            lens: 'Apple Telephoto Camera f/2.8',
-            aperture: 'f/2.8',
-            shutter: '1/900 s',
-            focalLength: '120 mm (Eşdeğer)',
-            iso: 'ISO 50'
-        }
-    },
-    {
-        src: '/assets/sanat/IMG_0910.jpg',
-        alt: 'İsviçre',
-        height: 'medium',
-        exif: {
-            title: 'İsviçre Doğası',
-            location: 'Luzern, İsviçre',
-            date: 'Mart 2026',
-            camera: 'iPhone 17 Pro Max',
-            lens: 'Apple Ultra Wide Camera f/2.2',
-            aperture: 'f/2.2',
-            shutter: '1/2270 s',
-            focalLength: '13 mm (Eşdeğer)',
-            iso: 'ISO 20'
-        }
-    },
-    {
-        src: '/assets/sanat/IMG_8401.jpg',
-        alt: 'Almanya',
-        height: 'tall',
-        exif: {
-            title: 'Köln Manzarası',
-            location: 'Köln, Almanya',
-            date: 'Şubat 2026',
-            camera: 'iPhone 17 Pro Max',
-            lens: 'Apple Wide Camera',
-            aperture: 'f/1.7',
-            shutter: '1/11360 s',
-            focalLength: '24 mm (Eşdeğer)',
-            iso: 'ISO 64'
-        }
-    }
-]
+// Fotoğraflar: build-time olarak /public/assets/sanat/ klasöründen üretiliyor
+// (bkz. scripts/generate-photos-data.js). Buraya elle hiçbir şey eklemene gerek yok.
+export const images = sanatPhotos
 
 const heightClasses = {
     short: 'h-48',
@@ -294,7 +23,7 @@ const heightClasses = {
 
 // EXIF Overlay Component
 function ExifOverlay({ exif, isLightbox = false }) {
-    const isPhone = exif.camera.toLowerCase().includes('iphone');
+    const isPhone = (exif.camera || '').toLowerCase().includes('iphone');
 
     return (
         <div className={`absolute bottom-0 left-0 bg-gradient-to-t from-black/90 via-black/70 to-transparent p-4 text-white ${isLightbox ? 'right-auto max-w-sm rounded-tr-xl' : 'right-0'}`}>
@@ -319,20 +48,26 @@ function ExifOverlay({ exif, isLightbox = false }) {
                     </div>
                 )}
 
-                <div className="flex items-center gap-2">
-                    <ApertureIcon size={12} />
-                    <span>{exif.aperture}</span>
-                </div>
+                {exif.aperture && (
+                    <div className="flex items-center gap-2">
+                        <ApertureIcon size={12} />
+                        <span>{exif.aperture}</span>
+                    </div>
+                )}
 
-                <div className="flex items-center gap-2">
-                    <TimerIcon size={12} />
-                    <span>{exif.shutter}</span>
-                </div>
+                {exif.shutter && (
+                    <div className="flex items-center gap-2">
+                        <TimerIcon size={12} />
+                        <span>{exif.shutter}</span>
+                    </div>
+                )}
 
-                <div className="flex items-center gap-2">
-                    <FocusIcon size={12} />
-                    <span>{exif.focalLength} | {exif.iso}</span>
-                </div>
+                {(exif.focalLength || exif.iso) && (
+                    <div className="flex items-center gap-2">
+                        <FocusIcon size={12} />
+                        <span>{[exif.focalLength, exif.iso].filter(Boolean).join(' | ')}</span>
+                    </div>
+                )}
             </div>
         </div>
     )
@@ -436,25 +171,8 @@ export default function Sanat() {
     const [lightboxOpen, setLightboxOpen] = useState(false)
     const [currentImageIndex, setCurrentImageIndex] = useState(0)
 
-    const sortedImages = useMemo(() => {
-        const monthMap = {
-            'Ocak': 1, 'Şubat': 2, 'Mart': 3, 'Nisan': 4, 'Mayıs': 5, 'Haziran': 6,
-            'Temmuz': 7, 'Ağustos': 8, 'Eylül': 9, 'Ekim': 10, 'Kasım': 11, 'Aralık': 12
-        }
-
-        return [...images].sort((a, b) => {
-            if (a.exif.date === 'Bilinmiyor') return 1
-            if (b.exif.date === 'Bilinmiyor') return -1
-
-            const [monthAStr, yearAStr] = a.exif.date.split(' ')
-            const [monthBStr, yearBStr] = b.exif.date.split(' ')
-            
-            const dateA = new Date(parseInt(yearAStr), (monthMap[monthAStr] || 1) - 1).getTime()
-            const dateB = new Date(parseInt(yearBStr), (monthMap[monthBStr] || 1) - 1).getTime()
-            
-            return dateB - dateA
-        })
-    }, [])
+    // JSON build time'da yeniden-eskiye sıralı üretiliyor; ek iş yok.
+    const sortedImages = images
 
     const openLightbox = (index) => {
         setCurrentImageIndex(index)

@@ -1,0 +1,56 @@
+name: Photos Pipeline
+
+# public/assets/sanat/ altına yeni fotoğraf push edildiğinde:
+#   1) sharp ile optimize et (max 2560px, JPG q85, EXIF korunur)
+#   2) EXIF + Nominatim geocoding → src/data/sanat-photos.json
+#   3) Değişen dosyaları repo'ya geri commit et
+#
+# Mobil akış: GitHub mobile app veya Working Copy ile foto push et → iş tamamlanır.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'public/assets/sanat/**'
+      - 'scripts/optimize-photos.js'
+      - 'scripts/generate-photos-data.js'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-photos:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Optimize photos
+        run: npm run photos:optimize
+
+      - name: Generate photos data (EXIF + geocoding)
+        run: npm run photos:data
+
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/assets/sanat/ src/data/sanat-photos.json src/data/geocode-cache.json
+          if git diff --cached --quiet; then
+            echo "Değişiklik yok."
+          else
+            git commit -m "chore(photos): otomatik optimize + EXIF verisi"
+            git push
+          fi

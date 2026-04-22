@@ -1,0 +1,373 @@
+{
+  "37.8786,-4.7792": {
+    "place_id": 272888156,
+    "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+    "osm_type": "relation",
+    "osm_id": 343207,
+    "lat": "37.8845813",
+    "lon": "-4.7760138",
+    "class": "boundary",
+    "type": "administrative",
+    "place_rank": 16,
+    "importance": 0.6509038959948756,
+    "addresstype": "city",
+    "name": "Córdoba",
+    "display_name": "Córdoba, Andalusia, İspanya",
+    "address": {
+      "city": "Córdoba",
+      "province": "Córdoba",
+      "ISO3166-2-lvl6": "ES-CO",
+      "state": "Andalusia",
+      "ISO3166-2-lvl4": "ES-AN",
+      "country": "İspanya",
+      "country_code": "es"
+    },
+    "boundingbox": [
+      "37.6658228",
+      "38.0315171",
+      "-4.9985994",
+      "-4.3514283"
+    ]
+  },
+  "47.0536,8.3097": {
+    "place_id": 65147076,
+    "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+    "osm_type": "relation",
+    "osm_id": 1682891,
+    "lat": "47.0521440",
+    "lon": "8.3058123",
+    "class": "boundary",
+    "type": "administrative",
+    "place_rank": 16,
+    "importance": 0.6584852099361778,
+    "addresstype": "city",
+    "name": "Lucerne",
+    "display_name": "Lucerne, İsviçre",
+    "address": {
+      "city": "Lucerne",
+      "state": "Lucerne",
+      "ISO3166-2-lvl4": "CH-LU",
+      "country": "İsviçre",
+      "country_code": "ch"
+    },
+    "boundingbox": [
+      "46.9980047",
+      "47.0835220",
+      "8.2065198",
+      "8.4279853"
+    ]
+  },
+  "47.0361,8.3570": {
+    "place_id": 72237342,
+    "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+    "osm_type": "relation",
+    "osm_id": 1682896,
+    "lat": "47.0470746",
+    "lon": "8.3733992",
+    "class": "boundary",
+    "type": "administrative",
+    "place_rank": 16,
+    "importance": 0.41215939017041997,
+    "addresstype": "village",
+    "name": "Meggen",
+    "display_name": "Meggen, Lucerne, 6045, İsviçre",
+    "address": {
+      "village": "Meggen",
+      "state": "Lucerne",
+      "ISO3166-2-lvl4": "CH-LU",
+      "postcode": "6045",
+      "country": "İsviçre",
+      "country_code": "ch"
+    },
+    "boundingbox": [
+      "47.0199538",
+      "47.0684476",
+      "8.3435529",
+      "8.4117552"
+    ]
+  },
+  "37.3833,-5.9866": {
+    "place_id": 423706277,
+    "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+    "osm_type": "relation",
+    "osm_id": 342563,
+    "lat": "37.3886303",
+    "lon": "-5.9953403",
+    "class": "boundary",
+    "type": "administrative",
+    "place_rank": 16,
+    "importance": 0.7297329708417591,
+    "addresstype": "city",
+    "name": "İşbîliye",
+    "display_name": "İşbîliye, Sevilla, Andalusia, İspanya",
+    "address": {
+      "city": "İşbîliye",
+      "province": "Sevilla",
+      "ISO3166-2-lvl6": "ES-SE",
+      "state": "Andalusia",
+      "ISO3166-2-lvl4": "ES-AN",
+      "country": "İspanya",
+      "country_code": "es"
+    },
+    "boundingbox": [
+      "37.3002036",
+      "37.4529579",
+      "-6.0329183",
+      "-5.8191571"
+    ]
+  },
+  "38.7108,-9.1458": {
+    "place_id": 274332697,
+    "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+    "osm_type": "relation",
+    "osm_id": 6427493,
+    "lat": "38.7114084",
+    "lon": "-9.1507477",
+    "class": "boundary",
+    "type": "administrative",
+    "place_rank": 16,
+    "importance": 0.39284077117933514,
+    "addresstype": "village",
+    "name": "Misericórdia",
+    "display_name": "Misericórdia, Lizbon, Lisbon, Portekiz",
+    "address": {
+      "village": "Misericórdia",
+      "city": "Lizbon",
+      "county": "Lisbon",
+      "ISO3166-2-lvl6": "PT-11",
+      "country": "Portekiz",
+      "country_code": "pt"
+    },
+    "boundingbox": [
+      "38.7043288",
+      "38.7171603",
+      "-9.1544556",
+      "-9.1407365"
+    ]
+  },
+  "52.4733,4.8196": {
+    "place_id": 144195312,
+    "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+    "osm_type": "relation",
+    "osm_id": 337728,
+    "lat": "52.4424926",
+    "lon": "4.8298607",
+    "class": "boundary",
+    "type": "administrative",
+    "place_rank": 16,
+    "importance": 0.5279097489258785,
+    "addresstype": "town",
+    "name": "Zaandam",
+    "display_name": "Zaandam, Zaanstad, North Holland, Hollanda",
+    "address": {
+      "town": "Zaandam",
+      "municipality": "Zaanstad",
+      "state": "North Holland",
+      "ISO3166-2-lvl4": "NL-NH",
+      "country": "Hollanda",
+      "country_code": "nl"
+    },
+    "boundingbox": [
+      "52.4166622",
+      "52.4839676",
+      "4.7834418",
+      "4.8628051"
+    ]
+  },
+  "52.4726,4.8164": {
+    "place_id": 142825144,
+    "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+    "osm_type": "relation",
+    "osm_id": 337728,
+    "lat": "52.4424926",
+    "lon": "4.8298607",
+    "class": "boundary",
+    "type": "administrative",
+    "place_rank": 16,
+    "importance": 0.5279097489258785,
+    "addresstype": "town",
+    "name": "Zaandam",
+    "display_name": "Zaandam, Zaanstad, North Holland, Hollanda",
+    "address": {
+      "town": "Zaandam",
+      "municipality": "Zaanstad",
+      "state": "North Holland",
+      "ISO3166-2-lvl4": "NL-NH",
+      "country": "Hollanda",
+      "country_code": "nl"
+    },
+    "boundingbox": [
+      "52.4166622",
+      "52.4839676",
+      "4.7834418",
+      "4.8628051"
+    ]
+  },
+  "43.8433,17.5942": {
+    "place_id": 55124155,
+    "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+    "osm_type": "relation",
+    "osm_id": 2528256,
+    "lat": "43.7800879",
+    "lon": "17.5499952",
+    "class": "boundary",
+    "type": "administrative",
+    "place_rank": 14,
+    "importance": 0.49194700130100233,
+    "addresstype": "municipality",
+    "name": "Prozor-Rama municipality",
+    "display_name": "Prozor-Rama municipality, Herzegovina-Neretva Canton, Bosna-Hersek Federasyonu, Bosna-Hersek",
+    "address": {
+      "municipality": "Prozor-Rama municipality",
+      "state_district": "Herzegovina-Neretva Canton",
+      "state": "Bosna-Hersek Federasyonu",
+      "ISO3166-2-lvl4": "BA-BIH",
+      "country": "Bosna-Hersek",
+      "country_code": "ba"
+    },
+    "boundingbox": [
+      "43.6782145",
+      "43.8815851",
+      "17.3693848",
+      "17.7899551"
+    ]
+  },
+  "41.1154,20.7917": {
+    "place_id": 59054759,
+    "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+    "osm_type": "relation",
+    "osm_id": 6483644,
+    "lat": "41.1170203",
+    "lon": "20.8017715",
+    "class": "boundary",
+    "type": "administrative",
+    "place_rank": 16,
+    "importance": 0.5881657199467167,
+    "addresstype": "city",
+    "name": "Ohri",
+    "display_name": "Ohri, Municipality of Ohrid, 6000, Kuzey Makedonya",
+    "address": {
+      "city": "Ohri",
+      "municipality": "Municipality of Ohrid",
+      "ISO3166-2-lvl7": "MK-310",
+      "postcode": "6000",
+      "country": "Kuzey Makedonya",
+      "country_code": "mk"
+    },
+    "boundingbox": [
+      "41.0791672",
+      "41.1486339",
+      "20.6748028",
+      "20.8303644"
+    ]
+  },
+  "40.7096,36.1185": {
+    "place_id": 190905438,
+    "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+    "osm_type": "relation",
+    "osm_id": 1837145,
+    "lat": "40.7603491",
+    "lon": "36.3219730",
+    "class": "boundary",
+    "type": "administrative",
+    "place_rank": 12,
+    "importance": 0.3875203940267567,
+    "addresstype": "town",
+    "name": "Taşova",
+    "display_name": "Taşova, Amasya, Karadeniz Bölgesi, Türkiye",
+    "address": {
+      "town": "Taşova",
+      "province": "Amasya",
+      "ISO3166-2-lvl4": "TR-05",
+      "region": "Karadeniz Bölgesi",
+      "country": "Türkiye",
+      "country_code": "tr"
+    },
+    "boundingbox": [
+      "40.5853759",
+      "40.9859234",
+      "36.0462329",
+      "36.5122462"
+    ]
+  },
+  "42.4842,18.7043": {
+    "place_id": 52618751,
+    "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+    "osm_type": "relation",
+    "osm_id": 2319532,
+    "lat": "42.4482610",
+    "lon": "18.7871188",
+    "class": "boundary",
+    "type": "administrative",
+    "place_rank": 12,
+    "importance": 0.4348618737536934,
+    "addresstype": "county",
+    "name": "Kotor Municipality",
+    "display_name": "Kotor Municipality, Karadağ",
+    "address": {
+      "county": "Kotor Municipality",
+      "ISO3166-2-lvl6": "ME-10",
+      "country": "Karadağ",
+      "country_code": "me"
+    },
+    "boundingbox": [
+      "42.2671415",
+      "42.6292521",
+      "18.5436033",
+      "18.8221849"
+    ]
+  },
+  "42.4868,18.6972": {
+    "place_id": 51067178,
+    "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+    "osm_type": "relation",
+    "osm_id": 53296,
+    "lat": "42.7755624",
+    "lon": "19.2022423",
+    "class": "boundary",
+    "type": "administrative",
+    "place_rank": 4,
+    "importance": 0.7634361861408886,
+    "addresstype": "country",
+    "name": "Karadağ",
+    "display_name": "Karadağ",
+    "address": {
+      "country": "Karadağ",
+      "country_code": "me"
+    },
+    "boundingbox": [
+      "41.6849866",
+      "43.5585061",
+      "18.4195781",
+      "20.3529276"
+    ]
+  },
+  "50.9411,6.9686": {
+    "place_id": 116309321,
+    "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+    "osm_type": "relation",
+    "osm_id": 62578,
+    "lat": "50.9383610",
+    "lon": "6.9599740",
+    "class": "boundary",
+    "type": "administrative",
+    "place_rank": 12,
+    "importance": 0.7583028574734825,
+    "addresstype": "city",
+    "name": "Köln",
+    "display_name": "Köln, Kuzey Ren-Vestfalya, Almanya",
+    "address": {
+      "city": "Köln",
+      "state": "Kuzey Ren-Vestfalya",
+      "ISO3166-2-lvl4": "DE-NW",
+      "country": "Almanya",
+      "country_code": "de"
+    },
+    "boundingbox": [
+      "50.8304399",
+      "51.0849743",
+      "6.7725303",
+      "7.1620280"
+    ]
+  }
+}
