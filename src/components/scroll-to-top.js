@@ -29,7 +29,13 @@ export function ScrollToTop({ threshold = 400 }) {
       type="button"
       onClick={handleClick}
       aria-label="Sayfanın en üstüne çık"
-      className={`fixed bottom-5 right-5 z-40 grid size-11 place-items-center rounded-full border border-gray-200 bg-white/80 text-gray-700 shadow-lg backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:border-gray-300 hover:bg-white hover:text-gray-900 active:translate-y-0 md:bottom-8 md:right-8 ${
+      style={{
+        WebkitBackdropFilter: 'blur(18px) saturate(180%)',
+        backdropFilter: 'blur(18px) saturate(180%)',
+        boxShadow:
+          '0 8px 24px -6px rgba(0,0,0,0.18), 0 2px 6px -2px rgba(0,0,0,0.08), inset 0 1px 0 0 rgba(255,255,255,0.6), inset 0 -1px 0 0 rgba(0,0,0,0.05)'
+      }}
+      className={`fixed bottom-5 right-5 z-40 grid size-11 place-items-center rounded-full border border-white/40 bg-white/25 text-gray-800 ring-1 ring-black/5 transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/35 hover:text-gray-900 active:translate-y-0 md:bottom-8 md:right-8 ${
         visible
           ? 'pointer-events-auto translate-y-0 opacity-100'
           : 'pointer-events-none translate-y-3 opacity-0'
