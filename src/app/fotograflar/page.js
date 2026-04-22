@@ -8,6 +8,7 @@ import { FloatingHeader } from '@/components/floating-header'
 import { GradientBg3 } from '@/components/gradient-bg'
 import { PageTitle } from '@/components/page-title'
 import { ScrollArea } from '@/components/scroll-area'
+import { ScrollToTop } from '@/components/scroll-to-top'
 import sanatPhotos from '@/data/sanat-photos.json'
 
 // Fotoğraflar: build-time olarak /public/assets/sanat/ klasöründen üretiliyor
@@ -249,6 +250,7 @@ export default function Sanat() {
                         )}
                     </div>
                 </div>
+                <ScrollToTop />
             </ScrollArea>
 
             {/* Fullscreen Lightbox */}

@@ -5,6 +5,7 @@ import { FloatingHeader } from '@/components/floating-header'
 import { GradientBg3 } from '@/components/gradient-bg'
 import { PageTitle } from '@/components/page-title'
 import { ScrollArea } from '@/components/scroll-area'
+import { ScrollToTop } from '@/components/scroll-to-top'
 import { YAZILAR, getYazi } from '@/lib/yazilar-data'
 
 export function generateStaticParams() {
@@ -89,6 +90,7 @@ export default async function WritingPost({ params }) {
                     </article>
                 </div>
             </div>
+            <ScrollToTop />
         </ScrollArea>
     )
 }

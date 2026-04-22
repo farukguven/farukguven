@@ -7,6 +7,7 @@ import { FloatingHeader } from '@/components/floating-header'
 import { GradientBg3 } from '@/components/gradient-bg'
 import { PageTitle } from '@/components/page-title'
 import { ScrollArea } from '@/components/scroll-area'
+import { ScrollToTop } from '@/components/scroll-to-top'
 import { RAFIM_META, RAFLAR, getRafStats } from '@/lib/rafim-data'
 
 const RAF_ICONS = {
@@ -155,6 +156,7 @@ export default function Rafim() {
                     </div>
                 </div>
             </div>
+            <ScrollToTop />
         </ScrollArea>
     )
 }

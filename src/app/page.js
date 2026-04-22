@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { FloatingHeader } from '@/components/floating-header'
 import { PageTitle } from '@/components/page-title'
 import { ScrollArea } from '@/components/scroll-area'
+import { ScrollToTop } from '@/components/scroll-to-top'
 import { WritingListLayout } from '@/components/writing/writing-list-layout'
 import { getSortedYazilar } from '@/lib/yazilar-data'
 
@@ -27,6 +28,7 @@ export default function Home() {
           <WritingListLayout list={sortedPosts} />
         </div>
       </div>
+      <ScrollToTop />
     </ScrollArea>
   )
 }

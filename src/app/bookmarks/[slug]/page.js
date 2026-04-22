@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation'
 import { FloatingHeader } from '@/components/floating-header'
 import { PageTitle } from '@/components/page-title'
 import { ScrollArea } from '@/components/scroll-area'
+import { ScrollToTop } from '@/components/scroll-to-top'
 import { getKategori, YER_IMLERI_KATEGORILER } from '@/lib/yer-imleri-data'
 
 export function generateStaticParams() {
@@ -78,6 +79,7 @@ export default async function KategoriPage({ params }) {
                     )}
                 </div>
             </div>
+            <ScrollToTop />
         </ScrollArea>
     )
 }

@@ -7,6 +7,7 @@ import { FloatingHeader } from '@/components/floating-header'
 import { GradientBg3 } from '@/components/gradient-bg'
 import { PageTitle } from '@/components/page-title'
 import { ScrollArea } from '@/components/scroll-area'
+import { ScrollToTop } from '@/components/scroll-to-top'
 import { Link } from '@/components/link'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { WORKSPACE_ITEMS, SHOOTING_GEAR_ITEMS, SOFTWARE_ITEMS } from '@/lib/constants'
@@ -265,6 +266,7 @@ export default function CalismaAlanim() {
                     </div>
                 </div>
             </div>
+            <ScrollToTop />
         </ScrollArea>
     )
 }

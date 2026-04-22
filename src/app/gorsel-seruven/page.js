@@ -3,6 +3,7 @@ import { GradientBg3 } from '@/components/gradient-bg'
 import { ImageSlider } from '@/components/image-slider'
 import { PageTitle } from '@/components/page-title'
 import { ScrollArea } from '@/components/scroll-area'
+import { ScrollToTop } from '@/components/scroll-to-top'
 
 export default function Filmografi() {
   const images2015 = [
@@ -360,6 +361,7 @@ export default function Filmografi() {
           </div>
         </div>
       </div>
+      <ScrollToTop />
     </ScrollArea>
   )
 }
