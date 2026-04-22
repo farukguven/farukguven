@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { SparklesIcon, MapIcon, ExternalLinkIcon } from 'lucide-react'
 
 import { FloatingHeader } from '@/components/floating-header'
@@ -98,6 +99,17 @@ export default function Izler() {
             <div className="content-wrapper">
                 <div className="content">
                     <PageTitle title={IZLER_META.title} />
+
+                    <div className="relative mb-6 aspect-[16/9] w-full overflow-hidden rounded-xl bg-gray-100">
+                        <Image
+                            src="/assets/izler/hero.jpg"
+                            alt="İzler — gezilerden bir kare"
+                            fill
+                            sizes="(max-width: 768px) 100vw, 800px"
+                            className="object-cover"
+                            priority
+                        />
+                    </div>
 
                     <p className="mb-4 text-gray-600">{IZLER_META.subtitle}</p>
 
