@@ -63,16 +63,6 @@ export const IZLER = [
         note: 'Eğik Kule ikonik ama Pisa sadece ondan ibaret değil. Arno nehri kıyısında yürümek güzeldi.',
         photos: []
     },
-    {
-        id: 'trieste',
-        city: 'Trieste',
-        country: 'İtalya',
-        flag: '🇮🇹',
-        note: 'İtalya, Slovenya ve Avusturya kültürlerinin kesişim noktası. Adriyatik\'e bakan meydanı ve tarihi kahvehaneleriyle bambaşka bir atmosfer.',
-        highlight: 'Piazza Unità d\'Italia — deniz kenarına açılan Avrupa\'nın en büyük meydanlarından.',
-        photos: []
-    },
-
     // ─── İSPANYA ───
     {
         id: 'sevilla',
@@ -248,6 +238,15 @@ export const IZLER = [
     },
 
     // ─── AVUSTURYA ───
+    {
+        id: 'graz',
+        city: 'Graz',
+        country: 'Avusturya',
+        flag: '🇦🇹',
+        note: 'Avusturya\'nın ikinci büyük şehri ama atmosferiyle çok daha sakin ve öğrenci ruhu taşıyan bir yer. Kırmızı kiremit çatılarla kaplı eski şehir UNESCO mirası.',
+        highlight: 'Schlossberg tepesine tırmanış — Graz\'ı yukarıdan izlemek başka.',
+        photos: []
+    },
     {
         id: 'hallstatt',
         city: 'Hallstatt',
