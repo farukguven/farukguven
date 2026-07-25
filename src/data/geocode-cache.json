@@ -369,5 +369,95 @@
       "6.7725303",
       "7.1620280"
     ]
+  },
+  "47.5615,13.6488": {
+    "place_id": 69889084,
+    "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+    "osm_type": "relation",
+    "osm_id": 546245,
+    "lat": "47.5347939",
+    "lon": "13.5988875",
+    "class": "boundary",
+    "type": "administrative",
+    "place_rank": 16,
+    "importance": 0.4912860476077075,
+    "addresstype": "city",
+    "name": "Hallstatt",
+    "display_name": "Hallstatt, Bezirk Gmunden, Upper Austria, 4830, Avusturya",
+    "address": {
+      "city": "Hallstatt",
+      "county": "Bezirk Gmunden",
+      "state": "Upper Austria",
+      "ISO3166-2-lvl4": "AT-4",
+      "postcode": "4830",
+      "country": "Avusturya",
+      "country_code": "at"
+    },
+    "boundingbox": [
+      "47.4749967",
+      "47.5937321",
+      "13.5515726",
+      "13.6721157"
+    ]
+  },
+  "47.5564,13.6482": {
+    "place_id": 69889084,
+    "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+    "osm_type": "relation",
+    "osm_id": 546245,
+    "lat": "47.5347939",
+    "lon": "13.5988875",
+    "class": "boundary",
+    "type": "administrative",
+    "place_rank": 16,
+    "importance": 0.4912860476077075,
+    "addresstype": "city",
+    "name": "Hallstatt",
+    "display_name": "Hallstatt, Bezirk Gmunden, Upper Austria, 4830, Avusturya",
+    "address": {
+      "city": "Hallstatt",
+      "county": "Bezirk Gmunden",
+      "state": "Upper Austria",
+      "ISO3166-2-lvl4": "AT-4",
+      "postcode": "4830",
+      "country": "Avusturya",
+      "country_code": "at"
+    },
+    "boundingbox": [
+      "47.4749967",
+      "47.5937321",
+      "13.5515726",
+      "13.6721157"
+    ]
+  },
+  "47.5565,13.6482": {
+    "place_id": 69889084,
+    "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+    "osm_type": "relation",
+    "osm_id": 546245,
+    "lat": "47.5347939",
+    "lon": "13.5988875",
+    "class": "boundary",
+    "type": "administrative",
+    "place_rank": 16,
+    "importance": 0.4912860476077075,
+    "addresstype": "city",
+    "name": "Hallstatt",
+    "display_name": "Hallstatt, Bezirk Gmunden, Upper Austria, 4830, Avusturya",
+    "address": {
+      "city": "Hallstatt",
+      "county": "Bezirk Gmunden",
+      "state": "Upper Austria",
+      "ISO3166-2-lvl4": "AT-4",
+      "postcode": "4830",
+      "country": "Avusturya",
+      "country_code": "at"
+    },
+    "boundingbox": [
+      "47.4749967",
+      "47.5937321",
+      "13.5515726",
+      "13.6721157"
+    ]
   }
 }

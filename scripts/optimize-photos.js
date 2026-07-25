@@ -22,9 +22,15 @@ const fs = require('node:fs')
 const path = require('node:path')
 const sharp = require('sharp')
 
-const MAX_WIDTH = 2560
+// Uzun kenar sınırı — hem genişlik hem yükseklik için geçerli.
+// (Eskiden sadece genişlik sınırlanıyordu, dikey fotoğraflar 4500px'e kadar çıkıyordu.)
+const MAX_EDGE = 2560
 const JPEG_QUALITY = 85
 const SUPPORTED_EXT = ['.jpg', '.jpeg', '.png', '.heic']
+
+// İşlenmiş dosyaların parmak izi — CI'da her çalıştırmada yeniden
+// encode edilip kalite kaybı birikmesin diye.
+const MANIFEST_PATH = path.resolve(process.cwd(), 'src/data/optimized-images.json')
 
 const targetDir = path.resolve(
   process.cwd(),
@@ -38,6 +44,28 @@ if (!fs.existsSync(targetDir)) {
 
 const backupDir = path.join(targetDir, '.originals')
 if (!fs.existsSync(backupDir)) fs.mkdirSync(backupDir, { recursive: true })
+
+// ─── Manifest ───────────────────────────────────────────────
+// GitHub Actions'ta .originals/ yok (gitignore'da), o yüzden script
+// zaten optimize edilmiş dosyayı "orijinal" sanıp tekrar encode ediyordu.
+// Her CI çalışmasında bir tur daha kalite kaybı demekti. Manifest bunu keser.
+
+function loadManifest() {
+  try {
+    return JSON.parse(fs.readFileSync(MANIFEST_PATH, 'utf-8'))
+  } catch {
+    return {}
+  }
+}
+
+function saveManifest(m) {
+  fs.mkdirSync(path.dirname(MANIFEST_PATH), { recursive: true })
+  fs.writeFileSync(MANIFEST_PATH, JSON.stringify(m, null, 2))
+}
+
+const manifest = loadManifest()
+const manifestKey = (file) =>
+  path.relative(process.cwd(), path.join(targetDir, file))
 
 const files = fs
   .readdirSync(targetDir)
@@ -65,6 +93,16 @@ async function optimizeOne(file) {
   const beforeSize = fs.statSync(filePath).size
   totalBefore += beforeSize
 
+  // Bu dosya daha önce işlendiyse ve o zamandan beri değişmediyse dokunma.
+  // (Aksi halde her CI çalışmasında yeniden encode edilip kalite kaybederdi.)
+  const key = manifestKey(file)
+  if (manifest[key] && manifest[key].size === beforeSize) {
+    totalAfter += beforeSize
+    skipped++
+    console.log(`  ⏭️  ${file} — zaten işlenmiş`)
+    return
+  }
+
   // Zaten yedeklenmişse tekrar yedekleme
   if (!fs.existsSync(backupPath)) {
     fs.copyFileSync(filePath, backupPath)
@@ -82,9 +120,10 @@ async function optimizeOne(file) {
     let pipeline = sharp(backupPath, { failOn: 'none' })
       .rotate() // EXIF'teki rotation'ı uygula, sonra sıfırla
       .resize({
-        width: MAX_WIDTH,
+        width: MAX_EDGE,
+        height: MAX_EDGE, // dikey fotoğraflar da sınırlansın
         withoutEnlargement: true, // küçükse büyütme
-        fit: 'inside'
+        fit: 'inside' // en/boy oranı korunur
       })
       .withMetadata() // EXIF koru
 
@@ -103,6 +142,7 @@ async function optimizeOne(file) {
       fs.unlinkSync(tempOutputPath)
       totalAfter += beforeSize
       skipped++
+      manifest[key] = { size: beforeSize }
       console.log(
         `  ⏭️  ${file} — zaten optimum (${(beforeSize / 1024 / 1024).toFixed(2)}MB)`
       )
@@ -118,6 +158,8 @@ async function optimizeOne(file) {
     const finalPath = path.join(targetDir, `${baseName}${outputExt}`)
     fs.renameSync(tempOutputPath, finalPath)
 
+    // HEIC → JPG'de dosya adı değişiyor, manifest'i son ada göre yaz
+    manifest[manifestKey(path.basename(finalPath))] = { size: afterSize }
     totalAfter += afterSize
     const saved = (((beforeSize - afterSize) / beforeSize) * 100).toFixed(1)
     console.log(
@@ -133,6 +175,8 @@ async function main() {
   for (const file of files) {
     await optimizeOne(file)
   }
+
+  saveManifest(manifest)
 
   const savedPct = (((totalBefore - totalAfter) / totalBefore) * 100).toFixed(1)
   const beforeMB = (totalBefore / 1024 / 1024).toFixed(2)

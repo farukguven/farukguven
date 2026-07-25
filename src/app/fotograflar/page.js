@@ -122,13 +122,20 @@ function Lightbox({ images, currentIndex, onClose, onNext, onPrev }) {
 
             {/* Image Container */}
             <div
-                className="relative max-h-[90vh] max-w-[90vw]"
+                className="relative flex h-[90vh] w-[90vw] items-center justify-center"
                 onClick={(e) => e.stopPropagation()}
             >
-                <img
+                <Image
+                    key={currentImage.src}
                     src={currentImage.src}
                     alt={currentImage.alt}
-                    className="max-h-[90vh] max-w-[90vw] rounded-lg object-contain pointer-events-none"
+                    fill
+                    sizes="90vw"
+                    quality={82}
+                    placeholder={currentImage.blurDataURL ? 'blur' : 'empty'}
+                    blurDataURL={currentImage.blurDataURL || undefined}
+                    className="rounded-lg object-contain pointer-events-none"
+                    priority
                     onContextMenu={(e) => e.preventDefault()}
                     draggable={false}
                 />
@@ -158,6 +165,9 @@ function ImageCard({ img, onClick, priority = false }) {
                 alt={img.alt}
                 fill
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                quality={72}
+                placeholder={img.blurDataURL ? 'blur' : 'empty'}
+                blurDataURL={img.blurDataURL || undefined}
                 className={`object-cover transition-transform duration-500 pointer-events-none ${isHovered ? 'scale-105' : ''}`}
                 priority={priority}
                 onContextMenu={(e) => e.preventDefault()}
@@ -210,7 +220,7 @@ export default function Sanat() {
                         {/* 1 Column (Mobile) */}
                         <div className="flex flex-col gap-3 sm:hidden">
                             {sortedImages.map((img, idx) => (
-                                <ImageCard key={idx} img={img} onClick={() => openLightbox(idx)} />
+                                <ImageCard key={idx} img={img} onClick={() => openLightbox(idx)} priority={idx < 3} />
                             ))}
                         </div>
 
@@ -222,7 +232,7 @@ export default function Sanat() {
                                         .map((img, idx) => ({ img, idx }))
                                         .filter(({ idx }) => idx % 2 === colIndex)
                                         .map(({ img, idx }) => (
-                                            <ImageCard key={idx} img={img} onClick={() => openLightbox(idx)} />
+                                            <ImageCard key={idx} img={img} onClick={() => openLightbox(idx)} priority={idx < 3} />
                                         ))}
                                 </div>
                             ))}
@@ -236,7 +246,7 @@ export default function Sanat() {
                                         .map((img, idx) => ({ img, idx }))
                                         .filter(({ idx }) => idx % 3 === colIndex)
                                         .map(({ img, idx }) => (
-                                            <ImageCard key={idx} img={img} onClick={() => openLightbox(idx)} />
+                                            <ImageCard key={idx} img={img} onClick={() => openLightbox(idx)} priority={idx < 3} />
                                         ))}
                                 </div>
                             ))}

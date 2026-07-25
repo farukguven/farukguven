@@ -67,7 +67,9 @@ function formatShutter(exposureTime) {
 
 function formatAperture(fNumber) {
   if (!fNumber) return null
-  return `f/${fNumber}`
+  // EXIF f-number çoğu zaman kesirli gelir (2.798828125 gibi) — tek haneye yuvarla
+  const rounded = Math.round(fNumber * 10) / 10
+  return `f/${rounded}`
 }
 
 function formatFocalLength(focal, focal35) {
@@ -95,6 +97,21 @@ function normalizeLens(lensMake, lensModel) {
   if (!lensMake) return lensModel
   if (lensModel.toLowerCase().includes(lensMake.toLowerCase())) return lensModel
   return `${lensMake} ${lensModel}`.trim()
+}
+
+// Minik bulanık önizleme (LQIP) — base64 data URI.
+// ~20px genişlik, dosya başına <1KB. Fotoğraf yüklenene kadar
+// kartın içinde bulanık hâli durur, boş gri kutu görünmez.
+async function makeBlurDataURL(filePath) {
+  try {
+    const buf = await sharp(filePath)
+      .resize(20, 20, { fit: 'inside' })
+      .jpeg({ quality: 45 })
+      .toBuffer()
+    return `data:image/jpeg;base64,${buf.toString('base64')}`
+  } catch {
+    return null
+  }
 }
 
 // En/boy oranından height sınıfı
@@ -243,6 +260,9 @@ async function main() {
       // Height sınıfı (gerçek boyutlara göre)
       const height = heightFromAspect(metadata?.width, metadata?.height)
 
+      // Bulanık önizleme
+      const blurDataURL = await makeBlurDataURL(filePath)
+
       // Kamera
       const camera = normalizeCamera(exif?.Make, exif?.Model)
       const lens = normalizeLens(exif?.LensMake, exif?.LensModel)
@@ -268,6 +288,7 @@ async function main() {
         height,
         width: metadata?.width || null,
         heightPx: metadata?.height || null,
+        blurDataURL,
         sortKey,
         exif: exifBlock
       })

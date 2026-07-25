@@ -8,8 +8,12 @@ const nextConfig = {
   },
   trailingSlash: false,
   images: {
-    deviceSizes: [390, 435, 768, 1024, 1280],
-    formats: ['image/avif']
+    // 1920: lightbox retina ekranlarda net kalsın diye
+    deviceSizes: [390, 435, 768, 1024, 1280, 1920],
+    // AVIF önce (en küçük), desteklemeyen tarayıcılar WebP alır.
+    // İkisi de kayıplı ama bu boyutlarda JPG'den ayırt edilemez.
+    formats: ['image/avif', 'image/webp'],
+    minimumCacheTTL: 31536000 // 1 yıl — dosya adı değişmediği sürece yeniden üretme
   },
   async redirects() {
     return [
