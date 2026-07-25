@@ -29,6 +29,26 @@ const SUPPORTED_EXT = ['.jpg', '.jpeg', '.png']
 const NOMINATIM_URL = 'https://nominatim.openstreetmap.org/reverse'
 const USER_AGENT = 'farukguven.com photo builder (hello@farukguven.com)'
 
+// ─── Elle konum ────────────────────────────────────────────
+// GPS'i olmayan fotoğraflar için (Sony makineler telefonla eşleşmediyse
+// konum yazmıyor). Anahtar = uzantısız dosya adı.
+// Yeni satır eklemek yeterli, gerisi otomatik.
+const MANUAL_LOCATIONS = {
+  DSC05955: { city: 'Bled', country: 'Slovenya' }
+}
+
+// ─── Şehir adı düzeltmeleri ────────────────────────────────
+// Nominatim Türkçe istendiğinde bazen tarihî/Osmanlıca adları döndürüyor
+// ya da idari birim ekliyor. Burada normale çeviriyoruz.
+const CITY_OVERRIDES = {
+  İşbîliye: 'Sevilla',
+  Lucerne: 'Luzern',
+  'Kuzey Makedonya': 'Makedonya'
+}
+
+// Nominatim'in eklediği idari birim ekleri ("Kotor Municipality" gibi)
+const ADMIN_SUFFIX = /\s+(municipality|belediyesi|county|district|province|opština|općina)$/i
+
 // Aylar
 const MONTHS_TR = [
   'Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran',
@@ -145,22 +165,33 @@ function prettifyFilename(basename) {
     .join(' ')
 }
 
-// Konumdan okunabilir kısa metin — "Kotor, Karadağ"
-function prettyLocation(geocodeResult) {
-  if (!geocodeResult || !geocodeResult.address) return null
-  const a = geocodeResult.address
-  const city = a.city || a.town || a.village || a.municipality || a.hamlet || a.county || a.state
-  const country = a.country
-  if (city && country) return `${city}, ${country}`
-  if (country) return country
-  return null
+// Şehir/ülke adını normalleştir: idari birim ekini at, sonra düzeltme
+// tablosundan geçir ("Kotor Municipality" → "Kotor", "İşbîliye" → "Sevilla")
+function normalizeName(name) {
+  if (!name) return null
+  const stripped = name.replace(ADMIN_SUFFIX, '').trim()
+  return CITY_OVERRIDES[stripped] || stripped
 }
 
-// Şehir tek başına (alt text için)
+// Geocode sonucundan şehir adını çıkar
 function cityOnly(geocodeResult) {
   if (!geocodeResult || !geocodeResult.address) return null
   const a = geocodeResult.address
-  return a.city || a.town || a.village || a.municipality || a.hamlet || a.county || a.state || null
+  const raw =
+    a.city || a.town || a.village || a.municipality || a.hamlet || a.county || a.state
+  return normalizeName(raw)
+}
+
+// Konumdan okunabilir kısa metin — "Kotor, Karadağ"
+function prettyLocation(geocodeResult) {
+  if (!geocodeResult || !geocodeResult.address) return null
+  const city = cityOnly(geocodeResult)
+  const country = normalizeName(geocodeResult.address.country)
+  if (city && country) {
+    // "Karadağ, Karadağ" gibi tekrarları engelle
+    return city === country ? country : `${city}, ${country}`
+  }
+  return country || null
 }
 
 // ─── Reverse geocoding (Nominatim, cache'li) ────────────────
@@ -236,10 +267,17 @@ async function main() {
       const date = exif?.DateTimeOriginal || exif?.CreateDate || exif?.ModifyDate
       const dateStr = formatDate(date)
 
-      // GPS → konum
+      // Konum: önce elle tanımlı tablo, yoksa GPS → ters-geocoding
       let location = null
       let cityName = null
-      if (exif?.latitude && exif?.longitude) {
+
+      const manual = MANUAL_LOCATIONS[basename]
+      if (manual) {
+        cityName = manual.city || null
+        location = manual.city
+          ? `${manual.city}, ${manual.country}`
+          : manual.country || null
+      } else if (exif?.latitude && exif?.longitude) {
         const geo = await reverseGeocode(exif.latitude, exif.longitude, cache)
         location = prettyLocation(geo)
         cityName = cityOnly(geo)
