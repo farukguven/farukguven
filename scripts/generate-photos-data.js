@@ -43,6 +43,7 @@ const MANUAL_LOCATIONS = {
 const CITY_OVERRIDES = {
   İşbîliye: 'Sevilla',
   Lucerne: 'Luzern',
+  Florence: 'Floransa',
   'Kuzey Makedonya': 'Makedonya'
 }
 
