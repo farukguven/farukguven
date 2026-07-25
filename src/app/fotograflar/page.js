@@ -125,6 +125,8 @@ function Lightbox({ images, currentIndex, onClose, onNext, onPrev }) {
                 className="relative flex h-[90vh] w-[90vw] items-center justify-center"
                 onClick={(e) => e.stopPropagation()}
             >
+                {/* border-0: globals.css'teki "img { rounded-xl border }" kuralı
+                    burada fotoğrafın değil, fill kutusunun kenarına çerçeve çiziyordu */}
                 <Image
                     key={currentImage.src}
                     src={currentImage.src}
@@ -134,7 +136,7 @@ function Lightbox({ images, currentIndex, onClose, onNext, onPrev }) {
                     quality={82}
                     placeholder={currentImage.blurDataURL ? 'blur' : 'empty'}
                     blurDataURL={currentImage.blurDataURL || undefined}
-                    className="rounded-lg object-contain pointer-events-none"
+                    className="border-0 object-contain pointer-events-none"
                     priority
                     onContextMenu={(e) => e.preventDefault()}
                     draggable={false}

@@ -13,6 +13,9 @@ const nextConfig = {
     // AVIF önce (en küçük), desteklemeyen tarayıcılar WebP alır.
     // İkisi de kayıplı ama bu boyutlarda JPG'den ayırt edilemez.
     formats: ['image/avif', 'image/webp'],
+    // Next 16'da quality prop'u burada tanımlı değilse sessizce 75'e düşüyor.
+    // 72 = grid küçük kartlar, 82 = lightbox tam ekran.
+    qualities: [72, 75, 82],
     minimumCacheTTL: 31536000 // 1 yıl — dosya adı değişmediği sürece yeniden üretme
   },
   async redirects() {
