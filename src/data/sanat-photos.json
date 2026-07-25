@@ -54,6 +54,24 @@
     }
   },
   {
+    "src": "/assets/sanat/DSC05955.jpeg",
+    "alt": "Objektifimden bir kare",
+    "height": "medium",
+    "width": 2560,
+    "heightPx": 2051,
+    "blurDataURL": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAAQABQDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAQFAQL/xAAjEAACAgIBAgcAAAAAAAAAAAABAgARAwQSFCExQUJhcZGh/8QAFgEBAQEAAAAAAAAAAAAAAAAABAID/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAIBAxITUf/aAAwDAQACEQMRAD8AYGTAfDl9Tk59cLZLfHGT8WjkRaOw5TiRxqhU1NNkBK5HF+QqKi6zgGVrKSnA4tcq179oRLp2Pq/BCa7GIxQ//9k=",
+    "exif": {
+      "location": "Bilinmiyor",
+      "date": "Nisan 2026",
+      "camera": "SONY ILCE-7CM2",
+      "lens": "FE 35mm F1.4 GM",
+      "aperture": "f/10",
+      "shutter": "1/160 s",
+      "focalLength": "35 mm (Eşdeğer)",
+      "iso": "ISO 100"
+    }
+  },
+  {
     "src": "/assets/sanat/IMG_0910.jpg",
     "alt": "Meggen'dan bir kare",
     "height": "tall",
