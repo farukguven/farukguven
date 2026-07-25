@@ -154,6 +154,31 @@ function isHumanReadableFilename(basename) {
   return true
 }
 
+// ─── Türkçe ayrılma hâli eki (-dan/-den/-tan/-ten) ─────────
+// Son ünlü kalınsa "a", inceyse "e"; son harf sert ünsüzse "t", değilse "d".
+// Bled'den, Hallstatt'tan, Kotor'dan, Köln'den...
+const BACK_VOWELS = 'aıouâû'
+const FRONT_VOWELS = 'eiöüî'
+const VOICELESS = 'pçtkfhsş'
+
+function ablativeSuffix(word) {
+  const lower = word.toLocaleLowerCase('tr-TR')
+
+  // Sondan başlayarak ilk ünlüyü bul
+  let isFront = false
+  for (let i = lower.length - 1; i >= 0; i--) {
+    if (BACK_VOWELS.includes(lower[i])) break
+    if (FRONT_VOWELS.includes(lower[i])) {
+      isFront = true
+      break
+    }
+  }
+
+  const vowel = isFront ? 'e' : 'a'
+  const consonant = VOICELESS.includes(lower[lower.length - 1]) ? 't' : 'd'
+  return `${consonant}${vowel}n`
+}
+
 function prettifyFilename(basename) {
   // "kotor-eski-kale" → "Kotor Eski Kale"
   return basename
@@ -290,7 +315,7 @@ async function main() {
       if (isHumanReadableFilename(basename)) {
         alt = prettifyFilename(basename)
       } else if (cityName) {
-        alt = `${cityName}'dan bir kare`
+        alt = `${cityName}'${ablativeSuffix(cityName)} bir kare`
       } else {
         alt = 'Objektifimden bir kare'
       }
