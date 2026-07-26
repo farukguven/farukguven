@@ -90,6 +90,42 @@
     }
   },
   {
+    "src": "/assets/sanat/IMG_0903.jpg",
+    "alt": "Meggen'den bir kare",
+    "height": "short",
+    "width": 2560,
+    "heightPx": 1278,
+    "blurDataURL": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAAKABQDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAMGBf/EACUQAQABAwIEBwAAAAAAAAAAAAECAAMRBBIFEyExFTJBcYGCkf/EABUBAQEAAAAAAAAAAAAAAAAAAAIB/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEwQSUf/aAAwDAQACEQMRAD8Af4lbDN4s/ZxTdNxbRzkkNu6PVFQx8lYeCdxZhJOy9cULh9+9B5Ekg1oo73FGUht8sjj0nRU/CUtvmf2ihe+F1P/Z",
+    "exif": {
+      "location": "Meggen, İsviçre",
+      "date": "Mart 2026",
+      "camera": "Apple iPhone 17 Pro Max",
+      "lens": "Apple iPhone 17 Pro Max back triple camera 2.22mm f/2.2",
+      "aperture": "f/2.2",
+      "shutter": "1/932 s",
+      "focalLength": "14 mm (Eşdeğer)",
+      "iso": "ISO 16"
+    }
+  },
+  {
+    "src": "/assets/sanat/IMG_0899.jpg",
+    "alt": "Meggen'den bir kare",
+    "height": "medium",
+    "width": 2560,
+    "heightPx": 2560,
+    "blurDataURL": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAAUABQDASIAAhEBAxEB/8QAGAABAAMBAAAAAAAAAAAAAAAAAAIDBAH/xAAiEAACAgEDBAMAAAAAAAAAAAABAgADEQQhMQUSMnEUodH/xAAYAQACAwAAAAAAAAAAAAAAAAABAwIEBf/EABoRAAIDAQEAAAAAAAAAAAAAAAACAxETAQT/2gAMAwEAAhEDEQA/AKOl1vdS+2Qp5E1jTOD4/U6iCipkrVhXgnAO5Y+pFOoPpqQqKxDkklskr+ScXpVV4oporayThaj22YB54iYtZ1Q239wVG2AzgxG7gyLPk2L3jIOOMwNQ7HcjyIiJiUWCWzblRn1ERCE//9k=",
+    "exif": {
+      "location": "Meggen, İsviçre",
+      "date": "Mart 2026",
+      "camera": "Apple iPhone 17 Pro Max",
+      "lens": "Apple iPhone 17 Pro Max back triple camera 2.22mm f/2.2",
+      "aperture": "f/2.2",
+      "shutter": "1/343 s",
+      "focalLength": "14 mm (Eşdeğer)",
+      "iso": "ISO 20"
+    }
+  },
+  {
     "src": "/assets/sanat/IMG_0735.jpg",
     "alt": "Luzern'den bir kare",
     "height": "tall",
@@ -103,6 +139,24 @@
       "lens": "Apple iPhone 17 Pro Max back triple camera 6.765mm f/1.78",
       "aperture": "f/1.8",
       "shutter": "1/11364 s",
+      "focalLength": "24 mm (Eşdeğer)",
+      "iso": "ISO 64"
+    }
+  },
+  {
+    "src": "/assets/sanat/IMG_0562.jpg",
+    "alt": "Luzern'den bir kare",
+    "height": "medium",
+    "width": 2560,
+    "heightPx": 2481,
+    "blurDataURL": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAATABQDASIAAhEBAxEB/8QAGAABAQEBAQAAAAAAAAAAAAAAAAQBBQb/xAAjEAACAgEEAQUBAAAAAAAAAAABAgADBBESIUExBRMUImFR/8QAFwEAAwEAAAAAAAAAAAAAAAAAAQIDBP/EAB0RAAICAQUAAAAAAAAAAAAAAAABAhEDEiExQVH/2gAMAwEAAhEDEQA/ALq694DLow6Ii9TTRZcULbFLbVHJi5ksU+3box5VwoG0fyQZy5qYrmrJZ1A+yq2hI76l1lk1dEnCKdWdL0578nDSzY9ZPlSCOfz8ieb+UwVdmdkLxyup4iKsroLivS2tmPkzbSWotUk6bDER5dmRGYOLTbio1lSsx7IiIiwitK2Kvk//2Q==",
+    "exif": {
+      "location": "Luzern, İsviçre",
+      "date": "Mart 2026",
+      "camera": "Apple iPhone 17 Pro Max",
+      "lens": "Apple iPhone 17 Pro Max back triple camera 6.765mm f/1.78",
+      "aperture": "f/1.8",
+      "shutter": "1/4237 s",
       "focalLength": "24 mm (Eşdeğer)",
       "iso": "ISO 64"
     }
@@ -401,7 +455,7 @@
     "height": "tall",
     "width": 2083,
     "heightPx": 2560,
-    "blurDataURL": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAAUABADASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAIEBf/EACIQAAICAgIABwAAAAAAAAAAAAECAAMRIQQSEyIxQUJRkf/EABQBAQAAAAAAAAAAAAAAAAAAAAT/xAAbEQACAgMBAAAAAAAAAAAAAAABAgADBBEhMv/aAAwDAQACEQMRAD8Az6bkdGLEKV9QZUiGS3cO6p2exqVB+LtjO46W20WHwbE6bPUjR/cRVWYQNP2CsxA2ivI3H49SbC5b7OzKHrS0KtiK47g+YZ94QgE9RDT/2Q==",
+    "blurDataURL": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAAUABADASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAIEBf/EACIQAAICAgIABwAAAAAAAAAAAAECAAMRIQQSEyIxQUJRkf/EABQBAQAAAAAAAAAAAAAAAAAAAAT/xAAbEQACAgMBAAAAAAAAAAAAAAABAgADBBEhMv/aAAwDAQACEQMRAD8Az6bkdGLEKV9QZUiGS3cO6p2exqVDfF2xncdLbaLD4NidNnqRo/uIqrMIGn7BWYgbRXkbj8epNhct9nZlD1paFWxFcdwfMM+8IQCeohp//9k=",
     "exif": {
       "location": "Venedik, İtalya",
       "date": "Mayıs 2023",
