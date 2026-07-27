@@ -176,6 +176,23 @@ async function main() {
     await optimizeOne(file)
   }
 
+  // Silinmiş fotoğrafların manifest kayıtlarını temizle.
+  // Aksi halde aynı adla farklı bir dosya eklenip boyutu tesadüfen
+  // tutarsa yanlışlıkla "zaten işlenmiş" sayılırdı.
+  const mevcut = new Set(files.map((f) => manifestKey(f)))
+  let temizlenen = 0
+  for (const key of Object.keys(manifest)) {
+    // Sadece bu klasöre ait kayıtları değerlendir
+    if (!key.startsWith(path.relative(process.cwd(), targetDir))) continue
+    if (!mevcut.has(key) && !fs.existsSync(path.resolve(process.cwd(), key))) {
+      delete manifest[key]
+      temizlenen++
+    }
+  }
+  if (temizlenen > 0) {
+    console.log(`\n🧹 ${temizlenen} öksüz manifest kaydı temizlendi.`)
+  }
+
   saveManifest(manifest)
 
   const savedPct = (((totalBefore - totalAfter) / totalBefore) * 100).toFixed(1)
