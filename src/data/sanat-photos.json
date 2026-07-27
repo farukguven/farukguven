@@ -108,21 +108,21 @@
     }
   },
   {
-    "src": "/assets/sanat/IMG_0899.jpg",
+    "src": "/assets/sanat/IMG_0900.jpg",
     "alt": "Meggen'den bir kare",
     "height": "medium",
     "width": 2560,
     "heightPx": 2560,
-    "blurDataURL": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAAUABQDASIAAhEBAxEB/8QAGAABAAMBAAAAAAAAAAAAAAAAAAIDBAH/xAAiEAACAgEDBAMAAAAAAAAAAAABAgADEQQhMQUSMnEUodH/xAAYAQACAwAAAAAAAAAAAAAAAAABAwIEBf/EABoRAAIDAQEAAAAAAAAAAAAAAAACAxETAQT/2gAMAwEAAhEDEQA/AKOl1vdS+2Qp5E1jTOD4/U6iCipkrVhXgnAO5Y+pFOoPpqQqKxDkklskr+ScXpVV4oporayThaj22YB54iYtZ1Q239wVG2AzgxG7gyLPk2L3jIOOMwNQ7HcjyIiJiUWCWzblRn1ERCE//9k=",
+    "blurDataURL": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAAUABQDASIAAhEBAxEB/8QAGAABAQEBAQAAAAAAAAAAAAAAAAIEAwX/xAAkEAACAgECBgMBAAAAAAAAAAABAgADEQQhBRITIjFBQlGBwf/EABgBAAIDAAAAAAAAAAAAAAAAAAECAwQF/8QAGxEAAgIDAQAAAAAAAAAAAAAAAAECAxESYTH/2gAMAwEAAhEDEQA/ANdradFbuyV9AZM7Lw4t4InmK/RsrstHMq5OcE5P57l6bjJFgCh1AYs+cdwycDeSRvyJKtIavTii8owYkD0pP8iZddxay7Vu1dtiJ8RzHx+GI+/RdeEq7NZYM4wRuJaMXADb5iJlR8LCHQrwOxd/sREQ5YT/2Q==",
     "exif": {
       "location": "Meggen, İsviçre",
       "date": "Mart 2026",
       "camera": "Apple iPhone 17 Pro Max",
-      "lens": "Apple iPhone 17 Pro Max back triple camera 2.22mm f/2.2",
-      "aperture": "f/2.2",
-      "shutter": "1/343 s",
-      "focalLength": "14 mm (Eşdeğer)",
-      "iso": "ISO 20"
+      "lens": "Apple iPhone 17 Pro Max back triple camera 6.765mm f/1.78",
+      "aperture": "f/1.8",
+      "shutter": "1/3226 s",
+      "focalLength": "24 mm (Eşdeğer)",
+      "iso": "ISO 64"
     }
   },
   {

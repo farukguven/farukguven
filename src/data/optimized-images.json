@@ -71,9 +71,6 @@
   "public/assets/sanat/IMG_0562.jpg": {
     "size": 812102
   },
-  "public/assets/sanat/IMG_0899.jpg": {
-    "size": 1192109
-  },
   "public/assets/sanat/IMG_0903.jpg": {
     "size": 454266
   },
@@ -82,5 +79,8 @@
   },
   "public/assets/sanat/IMG_2117.jpeg": {
     "size": 731552
+  },
+  "public/assets/sanat/IMG_0900.jpg": {
+    "size": 1419125
   }
 }
